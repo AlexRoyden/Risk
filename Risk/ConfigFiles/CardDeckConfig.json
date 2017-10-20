@@ -1,0 +1,180 @@
+{
+  "cards": [
+    {
+      "territory": "Afghanistan",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Alaska",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Alberta",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Argentina",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Brazil",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Central America",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"China",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"Congo",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"East Africa",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Eastern Australia",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Eastern United States",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Egypt",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Great Britain",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"Greenland",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"Iceland",
+      "army": "Infantry"
+    },
+    {
+      "territory":"India",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Indonesia",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"Irkutsk",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Japan",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Kamchatka",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"Madagascar",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Middle East",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Mongolia",
+      "army": "Artillery"
+    },
+    {
+      "territory":"New Guinea",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"North Africa",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Northern Europe",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"Northwest Territories",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Ontario",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"Peru",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"Quebec",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Scandinavia",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Southeast Asia",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Siberia",
+      "army": "Artillery"
+    },
+    {
+      "territory":"South Africa",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Southern Europe",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"Ukraine",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Ural",
+      "army": "Cavalry"
+    },
+    {
+      "territory":"Venezuela",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Western Australia",
+      "army": "Artillery"
+    },
+    {
+      "territory":"Western Europe",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Western United States",
+      "army": "Infantry"
+    },
+    {
+      "territory":"Yakutsk",
+      "army": "Cavalry"
+    },
+    {
+      "territory": "Joker 1",
+      "army": "Joker"
+    },
+    {
+      "territory":"Joker 2",
+      "army": "Joker"
+    }
+  ]
+}

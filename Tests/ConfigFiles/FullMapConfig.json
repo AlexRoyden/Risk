@@ -1,0 +1,340 @@
+﻿{
+  "earth":  [
+    {
+      "name": "Afghanistan",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Ural", "China", "India", "Middle East", "Ukraine" ],
+      "territory number": 1 
+    },
+    {
+      "name": "China",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Mongolia", "Southeast Asia", "India", "Afghanistan", "Ural", "Siberia" ],
+      "territory number": 2
+    },
+    {
+      "name": "India",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "China", "Southeast Asia", "Middle East", "Afghanistan" ],
+      "territory number": 3
+    },
+    {
+      "name": "Irkutsk",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Yakutsk", "Kamchatka", "Mongolia", "Siberia" ],
+      "territory number": 4
+    },
+    {
+      "name": "Japan",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Kamchatka", "Mongolia" ],
+      "territory number": 5
+    },
+    {
+      "name": "Kamchatka",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Japan", "Mongolia", "Irkutsk", "Yakutsk" ],
+      "territory number": 6
+    },
+    {
+      "name": "Middle East",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Ukraine", "Afghanistan", "India", "East Africa", "Egypt" ],
+      "territory number": 7
+    },
+    {
+      "name": "Mongolia",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Irkutsk", "Kamchatka", "Japan", "China", "Siberia" ],
+      "territory number": 8
+    },
+    {
+      "name": "Southeast Asia",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "China", "Indonesia", "India" ],
+      "territory number": 9
+    },
+    {
+      "name": "Siberia",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Yakutsk", "Irkutsk", "Mongolia", "China", "Ural" ],
+      "territory number": 10
+    },
+    {
+      "name": "Ural",
+      "continent": "Asia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Siberia", "China", "Afghanistan", "Ukraine" ],
+      "territory number": 11
+    },
+    {
+      "armies": 0,
+      "name": "Yakutsk",
+      "continent": "Asia",
+      "neighbours": [ "Kamchatka", "Irkutsk", "Siberia" ],
+      "occupant": "Empty",
+      "territory number": 12
+    },
+    {
+      "name": "Great Britain",
+      "continent": "Europe",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Scandinavia", "Northern Europe", "Western Europe", "Iceland" ],
+      "territory number": 13
+    },
+    {
+      "name": "Iceland",
+      "continent": "Europe",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Scandinavia", "Great Britain", "Greenland" ],
+      "territory number": 14
+    },
+    {
+      "name": "Northern Europe",
+      "continent": "Europe",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Scandinavia", "Ukraine", "Southern Europe", "Western Europe" ],
+      "territory number": 15
+    },
+    {
+      "name": "Scandinavia",
+      "continent": "Europe",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Ukraine", "Northern Europe", "Great Britain", "Iceland" ],
+      "territory number": 16
+    },
+    {
+      "name": "Southern Europe",
+      "continent": "Europe",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Northern Europe", "Ukraine", "Egypt", "North Africa", "Western Europe" ],
+      "territory number": 17
+    },
+    {
+      "name": "Ukraine",
+      "continent": "Europe",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Ural", "Afghanistan", "Middle East", "Southern Europe", "Northern Europe", "Scandinavia" ],
+      "territory number": 18
+    },
+    {
+      "name": "Western Europe",
+      "continent": "Europe",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Great Britain", "Northern Europe", "Southern Europe", "North Africa" ],
+      "territory number": 19
+    },
+    {
+      "name": "Alaska",
+      "continent": "North America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Northwest Territory", "Alberta", "Kamchatka" ],
+      "territory number": 20
+    },
+    {
+      "name": "Alberta",
+      "continent": "North America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Northwest Territory", "Ontario", "Western United States" ],
+      "territory number": 21
+    },
+    {
+      "name": "Central America",
+      "continent": "North America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Western United States", "Eastern United States", "Venezuela" ],
+      "territory number": 22
+    },
+    {
+      "name": "Eastern United States",
+      "continent": "North America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Ontario", "Quebec", "Central America", "Western United States" ],
+      "territory number": 23
+    },
+    {
+      "name": "Greenland",
+      "continent": "North America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Iceland", "Ontario", "Quebec", "Northwest Territory" ],
+      "territory number": 24
+    },
+    {
+      "name": "Northwest Territory",
+      "continent": "North America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Greenland", "Ontario", "Alberta", "Alaska" ],
+      "territory number": 25
+    },
+    {
+      "name": "Ontario",
+      "continent": "North America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Northwest Territory", "Greenland", "Quebec", "Western United States", "Eastern United States", "Alberta" ],
+      "territory number": 26
+    },
+    {
+      "name": "Quebec",
+      "continent": "North America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Greenland", "Eastern United States", "Ontario" ],
+      "territory number": 27
+    },
+    {
+      "name": "Western United States",
+      "continent": "North America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Ontario", "Alberta", "Eastern United States", "Central America" ],
+      "territory number": 28
+    },
+    {
+      "name": "Central Africa",
+      "continent": "Africa",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "North Africa", "East Africa", "South Africa" ],
+      "territory number": 29
+    },
+    {
+      "name": "East Africa",
+      "continent": "Africa",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Egypt", "Middle East", "Madagascar", "South Africa", "Central Africa", "North Africa" ],
+      "territory number": 30
+    },
+    {
+      "name": "Egypt",
+      "continent": "Africa",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Southern Europe", "Middle East", "East Africa", "North Africa" ],
+      "territory number": 31
+    },
+    {
+      "name": "Madagascar",
+      "continent": "Africa",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "East Africa", "South Africa" ],
+      "territory number": 32
+    },
+    {
+      "name": "North Africa",
+      "continent": "Africa",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Western Europe", "Southern Europe", "Egypt", "East Africa", "Central Africa" ],
+      "territory number": 33
+    },
+    {
+      "name": "South Africa",
+      "continent": "Africa",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Central Africa", "East Africa", "Madagascar" ],
+      "territory number": 34
+    },
+    {
+      "name": "Argentina",
+      "continent": "South America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Peru", "Brazil" ],
+      "territory number": 35
+    },
+    {
+      "name": "Brazil",
+      "continent": "South America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Venezuela", "Argentina", "Peru" ],
+      "territory number": 36
+    },
+    {
+      "name": "Peru",
+      "continent": "South America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Venezuela", "Brazil", "Argentina" ],
+      "territory number": 37
+    },
+    {
+      "name": "Venezuela",
+      "continent": "South America",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Brazil", "Peru" ],
+      "territory number": 38
+    },
+    {
+      "name": "Eastern Australia",
+      "continent": "Austarlasia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "New Guinea", "Western Australia" ],
+      "territory number": 39
+    },
+    {
+      "name": "Indonesia",
+      "continent": "Austarlasia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "New Guinea", "Southeast Asia" ],
+      "territory number": 40
+    },
+    {
+      "name": "New Guinea",
+      "continent": "Austarlasia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "Eastern Australia", "Western Australia", "Indonesia" ],
+      "territory number": 41
+    },
+    {
+      "name": "Western Australia",
+      "continent": "Austarlasia",
+      "occupant": "Empty",
+      "armies": 0,
+      "neighbours": [ "New Guinea", "Eastern Australia" ],
+      "territory number": 42
+    }
+  ]
+}

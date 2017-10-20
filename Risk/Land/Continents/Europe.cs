@@ -1,0 +1,7 @@
+﻿namespace Risk
+{
+    class Europe
+    {
+
+    }
+}
