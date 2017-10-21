@@ -145,14 +145,14 @@ namespace Risk
             return queue;
         }
 
-        public static void Timer()
+        public static void Timer(string message)
         {
             Console.Clear();
             Colour.SouthAmericaRed("\t\t**** Risk! ****\n");
             Console.WriteLine("\t====================================");
             for (int a = 3; a >= 0; a--)
             {
-                Console.Write("\r\tRolling dice......{0}", a);
+                Console.Write("\r\t{0}......{1}",message, a);
                 System.Threading.Thread.Sleep(1000);
             }
         }

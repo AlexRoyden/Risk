@@ -90,7 +90,7 @@ namespace Risk
                 Console.Write(GameEngine.BufferBuilder(territory.Occupant.Length, 16));
 
                 Console.Write(armies + "\t");
-                Console.Write("\n");              
+                Console.Write("\n");
             }
         }
     }

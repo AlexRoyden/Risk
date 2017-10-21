@@ -22,7 +22,7 @@ namespace Risk
         public void AssignStartingPlayer()
         {
             var starter = GameEngine.HighestRoll(GameBoard.GetBoard().GetPlayerList());
-            GameEngine.Timer();
+            GameEngine.Timer("Rolling dice");
             Colour.PrintPlayer(starter.Colour, "\r\t" + starter.Name);
             Console.Write(" won the roll and will play first.\n");
             Console.WriteLine("\tPress any key to continue.");

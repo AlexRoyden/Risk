@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 
 namespace Risk
 {
@@ -23,7 +22,7 @@ namespace Risk
         public void AssignStartingPlayer()
         {
             var starter = GameEngine.HighestRoll(GameBoard.GetBoard().GetPlayerList());
-            GameEngine.Timer();
+            GameEngine.Timer("Rolling dice");
             Colour.PrintPlayer(starter.Colour, "\r\t" + starter.Name);
             Console.Write(" won the roll and will play first.\n");
             Console.WriteLine("\tPress any key to continue.");
@@ -52,7 +51,7 @@ namespace Risk
                         confirmed = true;
                         break;
                     case 2:
-                        GameEngine.Timer();
+                        GameEngine.Timer("Building new board");
                         Console.WriteLine("\r\tPress any key to continue.");
                         Console.ReadKey();
                         foreach (var player in GameBoard.GetBoard().GetPlayerList())
