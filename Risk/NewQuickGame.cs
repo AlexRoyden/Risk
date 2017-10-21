@@ -9,12 +9,13 @@ namespace Risk
             InitializeBoard();
             AssignStartingPlayer();
             Populate();
+            BoardBuilder.LoadTerritoryNeighbours();
+            MenuBuilder.PlayerTurnMenu();
         }
 
         public void InitializeBoard()
         {
             var board = GameBoard.GetBoard();
-            BoardBuilder.LoadTerritoryNeighbours(board.GetEarth().Territories);
             var players = PlayersBuilder.CreatePlayers();
             board.SetPlayerList(players);
         }

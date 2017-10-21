@@ -10,6 +10,7 @@ namespace Risk
             AssignStartingPlayer();
             BoardPopulator.SelectTerritories();
             BoardPopulator.DeployArmies();
+            MenuBuilder.PlayerTurnMenu();
         }
 
         public void InitializeBoard()
@@ -17,6 +18,7 @@ namespace Risk
             var board = GameBoard.GetBoard();
             var players = PlayersBuilder.CreatePlayers();
             board.SetPlayerList(players);
+            BoardBuilder.LoadTerritoryNeighbours();
         }
 
         public void AssignStartingPlayer()

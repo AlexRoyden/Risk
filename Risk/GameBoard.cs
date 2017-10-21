@@ -69,6 +69,11 @@ namespace Risk
             _cards = BoardBuilder.LoadCards(_random);
         }
 
+        public Queue<Card> GetQueueOfGameCards()
+        {
+            return _cards;
+        }
+
         public Card GetGameCard()
         {
             if (_cards.Count < 1)
@@ -80,11 +85,28 @@ namespace Risk
 
         public void AddToUsedCardPile(List<Card> cards)
         {
+            var count = 0;
             foreach (var card in cards)
             {
                 UsedCards.Cards.Add(card);
-                _tradedCardSets += 1;
+                count++;
             }
+            _tradedCardSets = count / 3;
+        }
+
+        public CardDeck GetUsedCards()
+        {
+            return UsedCards;
+        }
+
+        public int GetTradedCardSets()
+        {
+            return _tradedCardSets;
+        }
+
+        public void SetTradedCardSets(int count)
+        {
+            _tradedCardSets = count;
         }
 
         public void SetPlayerList(List<Player> list)
@@ -138,6 +160,11 @@ namespace Risk
                 }
             }
             return player;
+        }
+
+        public Queue<Player> GetCurrentPlayerQueue()
+        {
+            return _currentPlayer;
         }
     }
 }

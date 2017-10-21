@@ -58,6 +58,8 @@
     <Compile Include="BoardPopulator.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardDeck.cs" />
+    <Compile Include="GameSave.cs" />
+    <Compile Include="GameState.cs" />
     <Compile Include="Mappers\CardMapper.cs" />
     <Compile Include="Colour.cs" />
     <Compile Include="Mappers\CardDeckMapper.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="NewQuickGame.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayersBuilder.cs" />
+    <Compile Include="SaveBuilder.cs" />
     <Compile Include="Territory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,6 +84,12 @@
   <ItemGroup>
     <None Include="ConfigFiles\App.config" />
     <None Include="ConfigFiles\CardDeckConfig.json" />
+    <None Include="ConfigFiles\Save2.json" />
+    <None Include="ConfigFiles\Save3.json" />
+    <None Include="ConfigFiles\Save4.json" />
+    <None Include="ConfigFiles\Save5.json" />
+    <None Include="ConfigFiles\Save6.json" />
+    <None Include="ConfigFiles\Save1.json" />
     <None Include="ConfigFiles\WorldMapConfig.json" />
     <None Include="ConfigFiles\packages.config" />
     <None Include="packages.config" />

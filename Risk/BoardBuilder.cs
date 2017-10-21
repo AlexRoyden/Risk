@@ -9,7 +9,6 @@ namespace Risk
     {
         public static Earth LoadNewTerritories()
         {
-            //path += @"\WorldMapConfig.json";
             var path = @"..\..\ConfigFiles\WorldMapConfig.json";
             Earth earth;
 
@@ -61,8 +60,9 @@ namespace Risk
             return cardQueue;
         }
 
-        public static void LoadTerritoryNeighbours(List<Territory> territoryList)
+        public static void LoadTerritoryNeighbours()
         {
+            var territoryList = GameBoard.GetBoard().GetEarth().Territories;
             foreach (var territory in territoryList)
             {
                 territory.Neighbours = new List<Territory>();

@@ -93,5 +93,49 @@ namespace Risk
                 Console.Write("\n");
             }
         }
+
+        public static void PlayerTurnMenu()
+        {
+            var player = GameBoard.GetBoard().GetCurrentPlayer();
+            Console.Clear();
+            Colour.SouthAmericaRed("\t     **** Risk! ****\n");
+            Console.WriteLine("\t==========================");
+            Console.WriteLine("\t       Game Menu");
+            Console.Write("\tCurrently ");
+            Colour.PrintPlayer(player.Colour, player.Name + "'s");
+            Console.Write(" turn.\n");
+            Console.WriteLine("\t1. Maps menu");
+            Console.WriteLine("\t2. Attack enemy territory");
+            Console.WriteLine("\t3. Move your Troops");
+            Console.WriteLine("\t4. Save Game");
+            Console.WriteLine("\t5. Quit Game");
+            Console.WriteLine("\t==========================");
+            var option = GameEngine.UserInputTest("\t(1-4)>", "\tInvalid input, please try again!", 1, 4);
+
+            switch (option)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    var msg = GameSave.SaveGame();
+                    GameEngine.Timer("Saving game");
+                    Console.WriteLine("\r\t" + msg + "\n\tPress any key to continue");
+                    Console.ReadKey();
+                    break;
+                case 5:
+                    Console.WriteLine("\tThank you and goodbye!\n\tPress any key to exit.......");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Error");
+                    break;
+            }
+            Console.ReadKey();
+        }
     }
 }

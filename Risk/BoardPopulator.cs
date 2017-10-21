@@ -104,11 +104,25 @@ namespace Risk
                     }
                    
                 }
-                var selection = GameEngine.UserInputTest("\n\tEnter territory number (1-42)>", "\tInvalid selection!", 1, 42);
-                var country = FindTerritory(selection, board);
 
-                country.Armies += 1;
-                player.Armies -= 1;
+                var isPlayersTerritory = false;
+                while (isPlayersTerritory == false)
+                {
+                    var selection = GameEngine.UserInputTest("\n\tEnter territory number (1-42)>", "\tInvalid selection!", 1, 42);
+                    var country = FindTerritory(selection, board);
+                    if (country.Occupant == player.Name)
+                    {
+                        country.Armies += 1;
+                        player.Armies -= 1;
+                        isPlayersTerritory = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\tYou have selected a territory that is occupied by another player!\n");
+                    }
+                    
+                }
+                
                 if (player.Armies == 0)
                 {
                     finished++;
