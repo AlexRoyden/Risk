@@ -73,7 +73,9 @@
     <Compile Include="NewQuickGame.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayersBuilder.cs" />
-    <Compile Include="SaveBuilder.cs" />
+    <Compile Include="SaveGameMetaData.cs" />
+    <Compile Include="SaveMetaMapper.cs" />
+    <Compile Include="StateBuilder.cs" />
     <Compile Include="Territory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,12 +86,13 @@
   <ItemGroup>
     <None Include="ConfigFiles\App.config" />
     <None Include="ConfigFiles\CardDeckConfig.json" />
-    <None Include="ConfigFiles\Save2.json" />
-    <None Include="ConfigFiles\Save3.json" />
-    <None Include="ConfigFiles\Save4.json" />
-    <None Include="ConfigFiles\Save5.json" />
-    <None Include="ConfigFiles\Save6.json" />
-    <None Include="ConfigFiles\Save1.json" />
+    <None Include="SaveFiles\Save2.json" />
+    <None Include="SaveFiles\Save3.json" />
+    <None Include="SaveFiles\Save4.json" />
+    <None Include="SaveFiles\Save5.json" />
+    <None Include="SaveFiles\SaveMeta.json" />
+    <None Include="SaveFiles\Save6.json" />
+    <None Include="SaveFiles\Save1.json" />
     <None Include="ConfigFiles\WorldMapConfig.json" />
     <None Include="ConfigFiles\packages.config" />
     <None Include="packages.config" />

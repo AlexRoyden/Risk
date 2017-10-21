@@ -2,7 +2,7 @@
 
 namespace Risk
 {
-    class SaveBuilder
+    class StateBuilder
     {
         public static GameState GetGameState()
         {
