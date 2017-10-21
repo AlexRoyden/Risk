@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Risk.Mappers;
 
 namespace Risk
 {
     class StateBuilder
     {
-        public static GameState GetGameState()
+        public static GameStateMapper GetGameState()
         {
             var board = GameBoard.GetBoard();
 
-            var state = new GameState
+            var state = new GameStateMapper
             {
                 Earth = board.GetEarth(),
                 Cards = board.GetQueueOfGameCards(),

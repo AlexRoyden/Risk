@@ -6,19 +6,6 @@ namespace Risk
 {
     public class GameEngine
     {
-        public static string PathBuilder()
-        {
-            var getRootDir = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-            var getRootGrandparent = Directory.GetParent(Directory.GetParent(getRootDir).ToString());
-            var path = Convert.ToString(getRootGrandparent);
-
-            if (path == @"C:\Users\aroyd\Documents\Study\Year 3 Semester 1\Software dev\Assignment2\Risk\Risk")
-            { path += @"\ConfigFiles"; }
-            else if (path == @"C:\Users\aroyd\Documents\Study\Year 3 Semester 1\Software dev\Assignment2\Risk")
-            { path += @"\Tests\ConfigFiles"; }
-            return path;
-        }
-
         public static Player HighestRoll(List<Player> rollers)
         {
             var board = GameBoard.GetBoard();

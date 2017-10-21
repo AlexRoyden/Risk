@@ -58,11 +58,10 @@
     <Compile Include="BoardPopulator.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardDeck.cs" />
-    <Compile Include="GameSave.cs" />
-    <Compile Include="GameState.cs" />
-    <Compile Include="Mappers\CardMapper.cs" />
+    <Compile Include="GameLoader.cs" />
+    <Compile Include="GameSaver.cs" />
+    <Compile Include="Mappers\GameStateMapper.cs" />
     <Compile Include="Colour.cs" />
-    <Compile Include="Mappers\CardDeckMapper.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="Earth.cs" />
     <Compile Include="GameBoard.cs" />
@@ -74,14 +73,12 @@
     <Compile Include="Player.cs" />
     <Compile Include="PlayersBuilder.cs" />
     <Compile Include="SaveGameMetaData.cs" />
-    <Compile Include="SaveMetaMapper.cs" />
+    <Compile Include="Mappers\SaveMetaMapper.cs" />
     <Compile Include="StateBuilder.cs" />
     <Compile Include="Territory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ITerritory.cs" />
-    <Compile Include="Mappers\TerritoryMapper.cs" />
-    <Compile Include="Mappers\EarthMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ConfigFiles\App.config" />

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Risk
+namespace Risk.Mappers
 {
-    class GameState
+    class GameStateMapper
     {
         [JsonProperty("earth")]
         public Earth Earth { get; set; }

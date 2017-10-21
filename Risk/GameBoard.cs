@@ -9,7 +9,7 @@ namespace Risk
         private readonly Random _random;
         private Earth _earth;
         private Queue<Card> _cards;
-        public CardDeck UsedCards;
+        private CardDeck _usedCards;
         private int _tradedCardSets;
         private List<Player> _players;
         private Queue<Player> _currentPlayer;
@@ -17,10 +17,9 @@ namespace Risk
         private GameBoard()
         {
             _random = new Random();
-            //var path = GameEngine.PathBuilder();
             _earth =  BoardBuilder.LoadNewTerritories();
             _cards = BoardBuilder.LoadCards(_random);
-            UsedCards = new CardDeck();
+            _usedCards = new CardDeck();
             _tradedCardSets = 0;
             _players = new List<Player>();
             _currentPlayer = new Queue<Player>();
@@ -45,10 +44,9 @@ namespace Risk
             return _earth;
         }
 
-        public void SetEarth(string gameType)
+        public void SetEarth(Earth earth)
         {
-            //var path = GameEngine.PathBuilder();
-            _earth = BoardBuilder.LoadNewTerritories();
+            _earth = earth;
         }
 
         public Territory GetTerritoryByName(string name)
@@ -63,10 +61,9 @@ namespace Risk
             return null;
         }
 
-        public void SetGameCards()
+        public void SetGameCards(Queue<Card> cards)
         {
-            //var path = GameEngine.PathBuilder();
-            _cards = BoardBuilder.LoadCards(_random);
+            _cards = cards;
         }
 
         public Queue<Card> GetQueueOfGameCards()
@@ -78,7 +75,7 @@ namespace Risk
         {
             if (_cards.Count < 1)
             {
-                _cards = BoardBuilder.UsedCardsQueueMaker(UsedCards, _random);
+                _cards = BoardBuilder.UsedCardsQueueMaker(_usedCards, _random);
             }
             return _cards.Dequeue();
         }
@@ -88,15 +85,20 @@ namespace Risk
             var count = 0;
             foreach (var card in cards)
             {
-                UsedCards.Cards.Add(card);
+                _usedCards.Cards.Add(card);
                 count++;
             }
             _tradedCardSets = count / 3;
         }
 
+        public void SetUsedCards(CardDeck cards)
+        {
+            _usedCards = cards;
+        }
+
         public CardDeck GetUsedCards()
         {
-            return UsedCards;
+            return _usedCards;
         }
 
         public int GetTradedCardSets()

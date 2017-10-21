@@ -40,15 +40,6 @@ namespace Tests
         }
 
         [TestMethod]
-        public void AddToUsedCardPileMethodTest()
-        {
-            var usedCardspre = GameBoard.GetBoard().UsedCards;
-            var usedCardsPost = GameBoard.GetBoard().UsedCards = MockBuilder.GetDeckOfCards();
-
-            Assert.AreNotEqual(usedCardspre, usedCardsPost);
-        }
-
-        [TestMethod]
         public void SetPlayerListMethodTest()
         {
             GameBoard.GetBoard().SetPlayerList(MockBuilder.GetPlayerList());
