@@ -19,7 +19,7 @@ namespace Risk
         {
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
-            MenuBuilder.StartMenu();
+            GameCreationMenus.StartMenu();
         }
     }
 }

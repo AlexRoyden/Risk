@@ -15,7 +15,8 @@ namespace Risk
                 UsedCards = board.GetUsedCards(),
                 TradedCardSets = board.GetTradedCardSets(),
                 Players = board.GetPlayerList(),
-                CurrentPlayer = board.GetCurrentPlayerQueue()
+                CurrentPlayer = board.CurrentPlayer,
+                PlayerTurnQueue = board.GetCurrentPlayerQueue()
             };
 
             foreach (var territory in state.Earth.Territories)

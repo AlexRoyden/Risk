@@ -16,6 +16,8 @@ namespace Risk.Mappers
         [JsonProperty("players")]
         public List<Player> Players { get; set; }
         [JsonProperty("current player")]
-        public Queue<Player> CurrentPlayer { get; set; }
+        public Player CurrentPlayer { get; set; }
+        [JsonProperty("player turn queue")]
+        public Queue<Player> PlayerTurnQueue { get; set; }
     }
 }

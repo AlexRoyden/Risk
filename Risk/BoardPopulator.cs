@@ -8,10 +8,10 @@ namespace Risk
         public static void SelectTerritories()
         {
             var board = GameBoard.GetBoard();
-            var player = board.GetCurrentPlayer();
             var selected = false;
             while (selected == false)
             {
+                var player = board.CurrentPlayer;
                 Console.Clear();
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
                 Console.WriteLine("\t====================================");
@@ -39,7 +39,7 @@ namespace Risk
                 var result = FindTerritory(selection, board);
                 if (CheckIfOccupied(result, player) == false)
                 {
-                    player = board.GetCurrentPlayer();
+                    board.SetCurrentPlayer();
                 }
 
                 if (CheckMapIsFull(board))
@@ -52,11 +52,11 @@ namespace Risk
         public static void DeployArmies()
         {
             var board = GameBoard.GetBoard();
-            var player = board.GetCurrentPlayer();
             var finished = 0;
 
             while (finished < board.GetPlayerList().Count)
             {
+                var player = board.CurrentPlayer;
                 Console.Clear();
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
                 Console.WriteLine("\t====================================");
@@ -102,7 +102,6 @@ namespace Risk
                             Console.Write(GameEngine.BufferBuilder(0, 80));
                         }
                     }
-                   
                 }
 
                 var isPlayersTerritory = false;
@@ -128,14 +127,15 @@ namespace Risk
                     finished++;
                     
                 }
-                player = board.GetCurrentPlayer();
+                board.SetCurrentPlayer();
             }
         }
 
         public static void AutoPopulate()
         {
-            var rnd = GameBoard.GetBoard().GetRandom();
-            var list = GameBoard.GetBoard().GetEarth();
+            var board = GameBoard.GetBoard();
+            var rnd = board.GetRandom();
+            var list = board.GetEarth();
             var tempEarth = new List<Territory>();
 
             foreach (var territory in list.Territories)
@@ -156,11 +156,12 @@ namespace Risk
 
             while (queue.Count > 0)
             {
-                var player = GameBoard.GetBoard().GetCurrentPlayer();
+                var player = board.CurrentPlayer;
                 var territory = queue.Dequeue();
                 territory.Occupant = player.Name;
                 territory.Armies = 1;
                 player.Armies -= 1;
+                board.SetCurrentPlayer();
             }
             AutoTroopDeploy();
         }
@@ -200,10 +201,10 @@ namespace Risk
 
         }
 
-        private static bool CheckIfOccupied(Territory territoryMapperMapperMapper, Player player)
+        private static bool CheckIfOccupied(Territory territory, Player player)
         {
             var occupied = false;
-            if (territoryMapperMapperMapper.Occupant != "Empty")
+            if (territory.Occupant != "Empty")
             {
                 Console.WriteLine("\tTerritory already occupied, please select another territory!");
                 Console.WriteLine("\tPress any key to continue.....");
@@ -211,8 +212,8 @@ namespace Risk
                 occupied = true;
             }
 
-            territoryMapperMapperMapper.Occupant = player.Name;
-            territoryMapperMapperMapper.Armies = 1;
+            territory.Occupant = player.Name;
+            territory.Armies = 1;
             player.Armies -= 1;
             return occupied;
         }

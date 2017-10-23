@@ -54,24 +54,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArmyBuilder.cs" />
     <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardPopulator.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardDeck.cs" />
-    <Compile Include="GameLoader.cs" />
+    <Compile Include="CardTradeingEngine.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GamePlayMenus.cs" />
+    <Compile Include="LoadedGame.cs" />
     <Compile Include="GameSaver.cs" />
+    <Compile Include="MapBuider.cs" />
     <Compile Include="Mappers\GameStateMapper.cs" />
     <Compile Include="Colour.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="Earth.cs" />
     <Compile Include="GameBoard.cs" />
     <Compile Include="GameEngine.cs" />
-    <Compile Include="IGame.cs" />
-    <Compile Include="MenuBuilder.cs" />
-    <Compile Include="NewManualGame.cs" />
-    <Compile Include="NewQuickGame.cs" />
+    <Compile Include="GameCreationMenus.cs" />
+    <Compile Include="ManualGame.cs" />
+    <Compile Include="PlayerTurn.cs" />
+    <Compile Include="QuickGame.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayersBuilder.cs" />
+    <Compile Include="Risk.cs" />
     <Compile Include="SaveGameMetaData.cs" />
     <Compile Include="Mappers\SaveMetaMapper.cs" />
     <Compile Include="StateBuilder.cs" />

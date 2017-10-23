@@ -306,7 +306,7 @@
     },
     {
       "name": "Eastern Australia",
-      "continent": "Austarlasia",
+      "continent": "Australasia",
       "occupant": "Empty",
       "armies": 0,
       "neighbours": [ "New Guinea", "Western Australia" ],
@@ -314,7 +314,7 @@
     },
     {
       "name": "Indonesia",
-      "continent": "Austarlasia",
+      "continent": "Australasia",
       "occupant": "Empty",
       "armies": 0,
       "neighbours": [ "New Guinea", "Southeast Asia" ],
@@ -322,7 +322,7 @@
     },
     {
       "name": "New Guinea",
-      "continent": "Austarlasia",
+      "continent": "Australasia",
       "occupant": "Empty",
       "armies": 0,
       "neighbours": [ "Eastern Australia", "Western Australia", "Indonesia" ],
@@ -330,7 +330,7 @@
     },
     {
       "name": "Western Australia",
-      "continent": "Austarlasia",
+      "continent": "Australasia",
       "occupant": "Empty",
       "armies": 0,
       "neighbours": [ "New Guinea", "Eastern Australia" ],

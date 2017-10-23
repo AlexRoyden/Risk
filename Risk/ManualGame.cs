@@ -2,18 +2,18 @@
 
 namespace Risk
 {
-    public class NewManualGame : IGame
+    public class ManualGame :Game
     {
-        public void CreateGame()
+        public override void CreateGame()
         {
             InitializeBoard();
             AssignStartingPlayer();
             BoardPopulator.SelectTerritories();
             BoardPopulator.DeployArmies();
-            MenuBuilder.PlayerTurnMenu();
+            GamePlayMenus.PlayerTurnMenu();
         }
 
-        public void InitializeBoard()
+        public override void InitializeBoard()
         {
             var board = GameBoard.GetBoard();
             var players = PlayersBuilder.CreatePlayers();
@@ -21,15 +21,17 @@ namespace Risk
             BoardBuilder.LoadTerritoryNeighbours();
         }
 
-        public void AssignStartingPlayer()
+        public override void AssignStartingPlayer()
         {
-            var starter = GameEngine.HighestRoll(GameBoard.GetBoard().GetPlayerList());
+            var board = GameBoard.GetBoard();
+            var starter = GameEngine.HighestRoll(board.GetPlayerList());
             GameEngine.Timer("Rolling dice");
             Colour.PrintPlayer(starter.Colour, "\r\t" + starter.Name);
             Console.Write(" won the roll and will play first.\n");
             Console.WriteLine("\tPress any key to continue.");
             Console.ReadKey();
-            GameBoard.GetBoard().SetPlayerTurnQueue(GameEngine.CreateTurnQueue(starter));
+            board.SetPlayerTurnQueue(GameEngine.CreateTurnQueue(starter));
+            board.SetCurrentPlayer();
         }
     }
 }

@@ -12,7 +12,8 @@ namespace Risk
         private CardDeck _usedCards;
         private int _tradedCardSets;
         private List<Player> _players;
-        private Queue<Player> _currentPlayer;
+        public Player CurrentPlayer;
+        private Queue<Player> _playerTurnQueue;
 
         private GameBoard()
         {
@@ -22,7 +23,8 @@ namespace Risk
             _usedCards = new CardDeck();
             _tradedCardSets = 0;
             _players = new List<Player>();
-            _currentPlayer = new Queue<Player>();
+            CurrentPlayer = new Player();
+            _playerTurnQueue = new Queue<Player>();
         }
 
         public static GameBoard GetBoard()
@@ -82,13 +84,11 @@ namespace Risk
 
         public void AddToUsedCardPile(List<Card> cards)
         {
-            var count = 0;
             foreach (var card in cards)
             {
                 _usedCards.Cards.Add(card);
-                count++;
             }
-            _tradedCardSets = count / 3;
+            _tradedCardSets += 1;
         }
 
         public void SetUsedCards(CardDeck cards)
@@ -140,33 +140,50 @@ namespace Risk
 
         public void SetPlayerTurnQueue(Queue<Player> queue)
         {
-            _currentPlayer = queue;
+            _playerTurnQueue = queue;
         }
 
-        public Player GetCurrentPlayer()
+        public void SetCurrentPlayer()
         {
-            var currentPlayer = _currentPlayer.Dequeue();
-            var player = new Player(null, 0, 1);
-            var match = false;
-
-            while (match == false)
+            if (CurrentPlayer.Name == null)
             {
-                foreach (var person in _players)
-                {
-                    if (person.Name == currentPlayer.Name)
-                    {
-                        _currentPlayer.Enqueue(currentPlayer);
-                        player = person;
-                        match = true;
-                    }
-                }
+                CurrentPlayer = _playerTurnQueue.Dequeue();
             }
-            return player;
+            else
+            {
+                var oldPlayer = new Player
+                {
+                    Name = CurrentPlayer.Name,
+                    Armies = CurrentPlayer.Armies,
+                    Colour = CurrentPlayer.Colour
+                };
+                _playerTurnQueue.Enqueue(oldPlayer);
+
+                CurrentPlayer = _playerTurnQueue.Dequeue();
+            }
+            
+            //var match = false;
+
+            //while (match == false)
+            //{
+            //    foreach (var person in _players)
+            //    {
+            //        if (person.Name == newPlayer.Name)
+            //        {
+            //            CurrentPlayer.Name = newPlayer.Name;
+            //            CurrentPlayer.Armies = newPlayer.Armies;
+            //            CurrentPlayer.Colour = newPlayer.Colour;
+            //            _playerTurnQueue.Enqueue(newPlayer);
+
+            //            match = true;
+            //        }
+            //    }
+            //}
         }
 
         public Queue<Player> GetCurrentPlayerQueue()
         {
-            return _currentPlayer;
+            return _playerTurnQueue;
         }
     }
 }
