@@ -6,23 +6,26 @@ namespace Risk
     class CardTradeingEngine
     {
         private static int _armies;
+        private static PlayersCards _cards;
 
-        public static int TradeMenu(int cardCount)
+        public static int TradeMenu()
         {
+            var player = GameBoard.GetBoard().CurrentPlayer;
+            _cards = new PlayersCards(player.Cards);
+
             var doneTrading = false;
             while (doneTrading == false)
             {
-                var player = GameBoard.GetBoard().CurrentPlayer;
                 Console.Clear();
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
                 Console.WriteLine("\t==========================");
                 Console.WriteLine("\t       Card trade menu");
-                if (cardCount > 6) { Colour.SouthAmericaRed("\tYou must trade at least one set of cards!\n"); }
+                if (player.Cards.Count > 6) { Colour.SouthAmericaRed("\tYou must trade at least one set of cards!\n"); }
 
-                Console.WriteLine("\tInfantry cards = " + player.Infantry.Count);
-                Console.WriteLine("\tCavalry cards = " + player.Cavalry.Count);
-                Console.WriteLine("\tArtillary cards = " + player.Infantry.Count);
-                Console.WriteLine("\tWild cards = " + player.Wild.Count);
+                Console.WriteLine("\tInfantry cards = " + _cards.Infantry.Count);
+                Console.WriteLine("\tCavalry cards = " + _cards.Cavalry.Count);
+                Console.WriteLine("\tArtillary cards = " + _cards.Infantry.Count);
+                Console.WriteLine("\tWild cards = " + _cards.Wild.Count);
 
                 Console.WriteLine("\n\t1. Play three of a kind");
                 Console.WriteLine("\t2. Play one of each");
@@ -34,13 +37,13 @@ namespace Risk
                 switch (option)
                 {
                     case 1:
-                        PlayThreeOfAKind(cardCount);
+                        PlayThreeOfAKind();
                         break;
                     case 2:
-                        PlayOneOfEach(cardCount);
+                        PlayOneOfEach();
                         break;
                     case 3:
-                        PlayWildCard(cardCount);
+                        PlayWildCard();
                         break;
                     case 4:
                         doneTrading = true;
@@ -53,23 +56,23 @@ namespace Risk
             return _armies;
         }
 
-        private static void PlayWildCard(int cardCount)
+        private static void PlayWildCard()
         {
             var done = false;
             while (done == false)
             {
                 var usedCards = new List<Card>();
                 var player = GameBoard.GetBoard().CurrentPlayer;
-                var infantry = player.Infantry.Count;
-                var cavalry = player.Infantry.Count;
-                var artillery = player.Infantry.Count;
-                var wild = player.Infantry.Count;
+                var infantry = _cards.Infantry.Count;
+                var cavalry = _cards.Infantry.Count;
+                var artillery = _cards.Infantry.Count;
+                var wild = _cards.Infantry.Count;
 
                 Console.Clear();
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
                 Console.WriteLine("\t==========================");
                 Console.WriteLine("\tTrade a wild card menu");
-                if (cardCount > 6) { Colour.SouthAmericaRed("\tYou must trade at least one set of cards!\n"); }
+                if (player.Cards.Count > 6) { Colour.SouthAmericaRed("\tYou must trade at least one set of cards!\n"); }
 
                 Console.WriteLine("\tInfantry cards = " + infantry);
                 Console.WriteLine("\tCavalry cards = " + cavalry);
@@ -88,17 +91,16 @@ namespace Risk
                     case 1:
                         if (infantry >= 2)
                         {
-                            usedCards.Add(player.Wild[0]);
-                            player.Wild.RemoveAt(0);
+                            usedCards.Add(_cards.Wild[0]);
+                            _cards.Wild.RemoveAt(0);
                             for (var index = 0; index <= 1; index++)
                             {
-                                usedCards.Add(player.Infantry[index]);
-                                player.Infantry.RemoveAt(index);
+                                usedCards.Add(_cards.Infantry[index]);
+                                _cards.Infantry.RemoveAt(index);
                             }
                             GameBoard.GetBoard().AddToUsedCardPile(usedCards);
-                            var armies = TradedCardValue();
-                            Console.WriteLine("You receive {0} armies", armies);
-                            Console.WriteLine("Press any key to continue....");
+                            TradedCardValue();
+                            Console.WriteLine("Cards traded, Press any key to continue....");
                             Console.ReadKey();
                         }
                         else
@@ -109,17 +111,16 @@ namespace Risk
                     case 2:
                         if (cavalry >= 3)
                         {
-                            usedCards.Add(player.Wild[0]);
-                            player.Wild.RemoveAt(0);
+                            usedCards.Add(_cards.Wild[0]);
+                            _cards.Wild.RemoveAt(0);
                             for (var index = 0; index <= 1; index++)
                             {
-                                usedCards.Add(player.Cavalry[index]);
-                                player.Cavalry.RemoveAt(index);
+                                usedCards.Add(_cards.Cavalry[index]);
+                                _cards.Cavalry.RemoveAt(index);
                             }
                             GameBoard.GetBoard().AddToUsedCardPile(usedCards);
-                            var armies = TradedCardValue();
-                            Console.WriteLine("You receive {0} armies", armies);
-                            Console.WriteLine("Press any key to continue....");
+                            TradedCardValue();
+                            Console.WriteLine("Cards traded, Press any key to continue....");
                             Console.ReadKey();
                         }
                         else
@@ -130,17 +131,16 @@ namespace Risk
                     case 3:
                         if (artillery >= 3)
                         {
-                            usedCards.Add(player.Wild[0]);
-                            player.Wild.RemoveAt(0);
+                            usedCards.Add(_cards.Wild[0]);
+                            _cards.Wild.RemoveAt(0);
                             for (var index = 0; index <= 1; index++)
                             {
-                                usedCards.Add(player.Artillary[index]);
-                                player.Artillary.RemoveAt(index);
+                                usedCards.Add(_cards.Artillary[index]);
+                                _cards.Artillary.RemoveAt(index);
                             }
                             GameBoard.GetBoard().AddToUsedCardPile(usedCards);
-                            var armies = TradedCardValue();
-                            Console.WriteLine("You receive {0} armies", armies);
-                            Console.WriteLine("Press any key to continue....");
+                            TradedCardValue();
+                            Console.WriteLine("Cards traded, Press any key to continue....");
                             Console.ReadKey();
                         }
                         else
@@ -158,23 +158,23 @@ namespace Risk
             }
         }
 
-        private static void PlayThreeOfAKind(int cardCount)
+        private static void PlayThreeOfAKind()
         {
             var done = false;
             while (done == false)
             {
                 var usedCards = new List<Card>();
                 var player = GameBoard.GetBoard().CurrentPlayer;
-                var infantry = player.Infantry.Count;
-                var cavalry = player.Infantry.Count;
-                var artillery = player.Infantry.Count;
-                var wild = player.Infantry.Count;
+                var infantry = _cards.Infantry.Count;
+                var cavalry = _cards.Infantry.Count;
+                var artillery = _cards.Infantry.Count;
+                var wild = _cards.Infantry.Count;
 
                 Console.Clear();
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
                 Console.WriteLine("\t==========================");
                 Console.WriteLine("\tTrade three of a kind menu");
-                if (cardCount > 6) { Colour.SouthAmericaRed("\tYou must trade at least one set of cards!\n"); }
+                if (player.Cards.Count > 6) { Colour.SouthAmericaRed("\tYou must trade at least one set of cards!\n"); }
 
                 Console.WriteLine("\tInfantry cards = " + infantry);
                 Console.WriteLine("\tCavalry cards = " + cavalry);
@@ -195,13 +195,12 @@ namespace Risk
                         {
                             for (var index = 0; index <= 2; index++)
                             {
-                                usedCards.Add(player.Infantry[index]);
-                                player.Infantry.RemoveAt(index);
+                                usedCards.Add(_cards.Infantry[index]);
+                                _cards.Infantry.RemoveAt(index);
                             }
                             GameBoard.GetBoard().AddToUsedCardPile(usedCards);
-                            var armies = TradedCardValue();
-                            Console.WriteLine("You receive {0} armies", armies);
-                            Console.WriteLine("Press any key to continue....");
+                            TradedCardValue();
+                            Console.WriteLine("Cards traded, Press any key to continue....");
                             Console.ReadKey();
                         }
                         else
@@ -214,13 +213,12 @@ namespace Risk
                         {
                             for (var index = 0; index <= 2; index++)
                             {
-                                usedCards.Add(player.Cavalry[index]);
-                                player.Cavalry.RemoveAt(index);
+                                usedCards.Add(_cards.Cavalry[index]);
+                                _cards.Cavalry.RemoveAt(index);
                             }
                             GameBoard.GetBoard().AddToUsedCardPile(usedCards);
-                            var armies = TradedCardValue();
-                            Console.WriteLine("You receive {0} armies", armies);
-                            Console.WriteLine("Press any key to continue....");
+                            TradedCardValue();
+                            Console.WriteLine("Cards traded, Press any key to continue....");
                             Console.ReadKey();
                         }
                         else
@@ -233,13 +231,12 @@ namespace Risk
                         {
                             for (var index = 0; index <= 2; index++)
                             {
-                                usedCards.Add(player.Artillary[index]);
-                                player.Artillary.RemoveAt(index);
+                                usedCards.Add(_cards.Artillary[index]);
+                                _cards.Artillary.RemoveAt(index);
                             }
                             GameBoard.GetBoard().AddToUsedCardPile(usedCards);
-                            var armies = TradedCardValue();
-                            Console.WriteLine("You receive {0} armies", armies);
-                            Console.WriteLine("Press any key to continue....");
+                            TradedCardValue();
+                            Console.WriteLine("Cards traded, Press any key to continue....");
                             Console.ReadKey();
                         }
                         else
@@ -257,23 +254,23 @@ namespace Risk
             }
         }
 
-        private static void PlayOneOfEach(int count)
+        private static void PlayOneOfEach()
         {
             var done = false;
             while (done == false)
             {
                 var usedCards = new List<Card>();
                 var player = GameBoard.GetBoard().CurrentPlayer;
-                var infantry = player.Infantry.Count;
-                var cavalry = player.Infantry.Count;
-                var artillery = player.Infantry.Count;
-                var wild = player.Infantry.Count;
+                var infantry = _cards.Infantry.Count;
+                var cavalry = _cards.Infantry.Count;
+                var artillery = _cards.Infantry.Count;
+                var wild = _cards.Infantry.Count;
 
                 Console.Clear();
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
                 Console.WriteLine("\t==========================");
                 Console.WriteLine("\t  Trade one of each menu");
-                if (count > 6) { Colour.SouthAmericaRed("\tYou must trade at least one set of cards!\n"); }
+                if (player.Cards.Count > 6) { Colour.SouthAmericaRed("\tYou must trade at least one set of cards!\n"); }
 
                 Console.WriteLine("\tInfantry cards = " + infantry);
                 Console.WriteLine("\tCavalry cards = " + cavalry);
@@ -290,17 +287,16 @@ namespace Risk
                     case 1:
                         if (infantry >= 1 && cavalry >= 1 && artillery >= 1)
                         {
-                            usedCards.Add(player.Infantry[0]);
-                            player.Infantry.RemoveAt(0);
-                            usedCards.Add(player.Cavalry[0]);
-                            player.Cavalry.RemoveAt(0);
-                            usedCards.Add(player.Artillary[0]);
-                            player.Artillary.RemoveAt(0);
+                            usedCards.Add(_cards.Infantry[0]);
+                            _cards.Infantry.RemoveAt(0);
+                            usedCards.Add(_cards.Cavalry[0]);
+                            _cards.Cavalry.RemoveAt(0);
+                            usedCards.Add(_cards.Artillary[0]);
+                            _cards.Artillary.RemoveAt(0);
 
                             GameBoard.GetBoard().AddToUsedCardPile(usedCards);
-                            var armies = TradedCardValue();
-                            Console.WriteLine("You receive {0} armies", armies);
-                            Console.WriteLine("Press any key to continue....");
+                            TradedCardValue();
+                            Console.WriteLine("Cards traded, Press any key to continue....");
                             Console.ReadKey();
                         }
                         else
@@ -318,49 +314,40 @@ namespace Risk
             }
         }
 
-        private static int TradedCardValue()
+        private static void TradedCardValue()
         {
             var sets = GameBoard.GetBoard().GetTradedCardSets();
+            sets += 1;
 
             if (sets == 1)
             {
                 _armies += 4;
-                return 4;
             }
             if (sets == 2)
             {
                 _armies += 6;
-                return 6;
             }
             if (sets == 3)
             {
                 _armies += 8;
-                return 8;
             }
             if (sets == 4)
             {
                 _armies += 10;
-                return 10;
             }
             if (sets == 5)
             {
                 _armies += 12;
-                return 12;
             }
             if (sets == 6)
             {
                 _armies += 15;
-                return 15;
             }
             if (sets > 6)
             {
                 var difference = sets - 6;
-                var count = 15 + (difference * 5);
-                _armies += count;
-                return count;
+                _armies += 15 + difference * 5;
             }
-
-            return 0;
         }
     }
 }

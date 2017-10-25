@@ -23,7 +23,7 @@ namespace Risk
                 case "Asia":
                     AsiaGreen(value);
                     break;
-                case "Austarlasia":
+                case "Australasia":
                     AustralasiaCyan(value);
                     break;
                 default:

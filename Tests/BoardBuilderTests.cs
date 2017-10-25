@@ -23,7 +23,6 @@ namespace Tests
         [TestMethod]
         public void TestLoadedTerritoriesAreUnique()
         {
-            //var path = GameEngine.PathBuilder();
             var earth = BoardBuilder.LoadNewTerritories();
             var rnd1 = _random.Next(0, 41);
             var rnd2 = _random.Next(0, 41);
@@ -37,10 +36,19 @@ namespace Tests
         [TestMethod]
         public void TestAllCardsLoad()
         {
-            // path = GameEngine.PathBuilder();
             var cards = BoardBuilder.LoadCards(_random);
 
             Assert.AreEqual(44, cards.Count);
+        }
+
+        [TestMethod]
+        public void TestUsedCardsQueueMaker()
+        {
+            var cardDeck = MockBuilder.GetDeckOfCards();
+            var rnd = new Random();
+            var cards = BoardBuilder.UsedCardsQueueMaker(cardDeck,rnd);
+
+            Assert.Contains(cardDeck.Cards[1], cards);
         }
     }
 }

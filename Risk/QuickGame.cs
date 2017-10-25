@@ -10,7 +10,7 @@ namespace Risk
             AssignStartingPlayer();
             Populate();
             BoardBuilder.LoadTerritoryNeighbours();
-            GamePlayMenus.PlayerTurnMenu();
+            PlayerTurn.GamePlay();
         }
 
         public override void InitializeBoard()

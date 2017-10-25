@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Risk
+﻿namespace Risk
 {
     class PlayerTurn
     {
+        public static void GamePlay()
+        {
+            var board = GameBoard.GetBoard();
 
+            board.CurrentPlayer.Armies = ArmyBuilder.ReinforcmentsCalculator();
+
+            GamePlayMenus.PlayerTurnMenu();
+        }
     }
 }

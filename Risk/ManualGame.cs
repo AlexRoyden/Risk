@@ -10,7 +10,7 @@ namespace Risk
             AssignStartingPlayer();
             BoardPopulator.SelectTerritories();
             BoardPopulator.DeployArmies();
-            GamePlayMenus.PlayerTurnMenu();
+            PlayerTurn.GamePlay();
         }
 
         public override void InitializeBoard()

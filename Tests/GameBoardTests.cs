@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Risk;
 using Assert = NUnit.Framework.Assert;
 
@@ -34,9 +32,50 @@ namespace Tests
         }
 
         [TestMethod]
+        public void GetTerritoryByName()
+        {
+            var board = GameBoard.GetBoard();
+            var earth = board.GetEarth();
+            var testTerritory = board.GetTerritoryByName("China");
+            var sampleTerritory = new Territory();
+
+            foreach(var territory in earth.Territories)
+            {
+                if(territory.Name == "China")
+                {
+                    sampleTerritory = territory;
+                    continue;
+                }
+            }
+
+            Assert.AreSame(testTerritory, sampleTerritory);
+        }
+
+        [TestMethod]
+        public void GetQueueOfGameCardMethodTest()
+        {
+            Assert.IsNotNull(GameBoard.GetBoard().GetQueueOfGameCards());
+        }
+
+        [TestMethod]
         public void GetCardMethodTest()
         {
             Assert.IsNotNull(GameBoard.GetBoard().GetGameCard());
+        }
+
+        [TestMethod]
+        public void GetUsedCardsMethodTest()
+        {
+            var cardDeck = MockBuilder.GetDeckOfCards();
+            GameBoard.GetBoard().SetUsedCards(cardDeck);
+
+            Assert.IsNotNull(GameBoard.GetBoard().GetUsedCards());
+        }
+
+        [TestMethod]
+        public void GetTradedCardSetsMethodTest()
+        {
+            Assert.Zero(GameBoard.GetBoard().GetTradedCardSets());
         }
 
         [TestMethod]
@@ -66,6 +105,16 @@ namespace Tests
             var testList = MockBuilder.GetPlayerList();
 
             Assert.IsTrue(GameBoard.GetBoard().GetPlayerByIndex(index).Name == testList[index].Name);
+        }
+
+        [TestMethod]
+        public void GetPlayerByNameMethodTest()
+        {
+            var playerList = MockBuilder.GetPlayerList();
+            GameBoard.GetBoard().SetPlayerList(playerList);
+            var testPlayer = playerList[0];
+
+            Assert.AreSame(GameBoard.GetBoard().GetPlayerByName("TestName1"), testPlayer);
         }
 
         [TestMethod]

@@ -5,41 +5,58 @@ namespace Risk
 {
     class ArmyBuilder
     {
-        private static int _armies;
+        private static int _territoryCount;
+        private static int _continentCount;
 
-        public static int Counter()
+        public static int ReinforcmentsCalculator()
         {
-            CountByTerritories();
-            CountByContinent();
-            TradeCards();
+            var territory = CountByTerritories();
+            var continent = CountByContinent();
+            var trades = TradeCards();
+            var armies = territory + continent + trades;
+            var player = GameBoard.GetBoard().CurrentPlayer;
 
-            return _armies;
+            Console.Clear();
+            Colour.SouthAmericaRed("\t\t  **** Risk! ****\n");
+            Console.WriteLine("\t=======================================");
+            Colour.PrintPlayer(player.Colour, "\t\t" + player.Name + "'s ");
+            Console.WriteLine("Reinforcements");
+            Console.WriteLine("\t{0} Territories occupied = {1} armies", _territoryCount, territory);
+            Console.WriteLine("\t{0} continents controlled = {1} armies", _continentCount, continent);
+            Console.WriteLine("\tArmies earned from playing cards = {0}", trades);
+            Console.WriteLine("\t=======================================");
+            Console.WriteLine("\tTotal reinforcements this turn = {0}", armies);
+            Console.WriteLine("\n\tPress any key to begin troop deployment....");
+            Console.ReadKey();
+            return armies;
         }
 
-        private static void CountByTerritories()
+        private static int CountByTerritories()
         {
             var board = GameBoard.GetBoard();
             var count = 0;
-
+            int result;
             foreach (var territory in board.GetEarth().Territories)
             {
                 if (territory.Occupant == board.CurrentPlayer.Name)
                 {
                     count += 1;
                 }
-
-                if (count < 9)
-                {
-                    _armies += 3;
-                }
-                else
-                {
-                    _armies += Convert.ToInt32(Math.Floor((double) count / 3));
-                }
             }
+
+            _territoryCount = count;
+            if (count < 9)
+            {
+                result = 3;
+            }
+            else
+            {
+                result = Convert.ToInt32(Math.Floor((double)count / 3));
+            }
+            return result;
         }
 
-        private static void CountByContinent()
+        private static int CountByContinent()
         {
             var board = GameBoard.GetBoard();
             var player = board.CurrentPlayer.Name;
@@ -49,6 +66,7 @@ namespace Risk
             var africa = new List<string>();
             var southAmerica = new List<string>();
             var australasia = new List<string>();
+            int result = 0;
 
             foreach (var territory in board.GetEarth().Territories)
             {
@@ -57,19 +75,19 @@ namespace Risk
                     case "Asia":
                         asia.Add(territory.Occupant);
                         break;
-                    case "europe":
+                    case "Europe":
                         europe.Add(territory.Occupant);
                         break;
-                    case "northAmerica":
+                    case "North America":
                         northAmerica.Add(territory.Occupant);
                         break;
-                    case "africa":
+                    case "Africa":
                         africa.Add(territory.Occupant);
                         break;
-                    case "southAmerica":
+                    case "South America":
                         southAmerica.Add(territory.Occupant);
                         break;
-                    case "australasia":
+                    case "Australasia":
                         australasia.Add(territory.Occupant);
                         break;
                     default:
@@ -78,12 +96,14 @@ namespace Risk
                 }
             }
 
-            if (CheckContinentForRuler(asia, player)) {_armies += 7;}
-            if (CheckContinentForRuler(europe, player)) { _armies += 5;}
-            if (CheckContinentForRuler(northAmerica, player)) { _armies += 5;}
-            if (CheckContinentForRuler(africa, player)) { _armies += 3;}
-            if (CheckContinentForRuler(southAmerica, player)) { _armies += 2;}
-            if (CheckContinentForRuler(australasia, player)) { _armies += 2;}
+            if (CheckContinentForRuler(asia, player)) { result += 7;}
+            if (CheckContinentForRuler(europe, player)) { result += 5;}
+            if (CheckContinentForRuler(northAmerica, player)) { result += 5;}
+            if (CheckContinentForRuler(africa, player)) { result += 3;}
+            if (CheckContinentForRuler(southAmerica, player)) { result += 2;}
+            if (CheckContinentForRuler(australasia, player)) { result += 2;}
+
+            return result;
         }
 
         private static bool CheckContinentForRuler(List<string> continent, string player)
@@ -100,28 +120,22 @@ namespace Risk
 
             if (continent.Count == playerOccupied)
             {
+                _continentCount += 1;
                 return true;
             }
             return false;
         }
 
-        private static void TradeCards()
+        private static int TradeCards()
         {
             var player = GameBoard.GetBoard().CurrentPlayer;
-            var count = player.Infantry.Count + player.Cavalry.Count + player.Artillary.Count + player.Wild.Count;
-
-            if (player.Infantry.Count >= 3 || player.Cavalry.Count >= 3 || player.Artillary.Count >= 3)
+            
+            var result = 0;
+            if (player.Cards != null && player.Cards.Count >= 3 )
             {
-                _armies = CardTradeingEngine.TradeMenu(count);
+                result = CardTradeingEngine.TradeMenu();
             }
-            else if (player.Infantry.Count >= 1 && player.Cavalry.Count >= 1 && player.Artillary.Count >= 1)
-            {
-                _armies = CardTradeingEngine.TradeMenu(count);
-            }
-            if (player.Infantry.Count >= 2 || player.Cavalry.Count >= 2 || player.Artillary.Count >= 2 && player.Wild.Count > 0)
-            {
-                _armies = CardTradeingEngine.TradeMenu(count);
-            }
+            return result;
         }
     }
 }
