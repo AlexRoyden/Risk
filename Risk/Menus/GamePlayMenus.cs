@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Risk
+namespace Risk.Menus
 {
     class GamePlayMenus
     {
@@ -17,28 +17,22 @@ namespace Risk
                 Console.Write("\tCurrently ");
                 Colour.PrintPlayer(player.Colour, player.Name + "'s");
                 Console.Write(" turn.\n");
-                Console.WriteLine("\t1. Maps menu");
-                Console.WriteLine("\t2. Attack enemy territory");
-                Console.WriteLine("\t3. Move your Troops");
-                Console.WriteLine("\t4. Save Game");
-                Console.WriteLine("\t5. Quit Game");
+                Console.WriteLine("\t1. Return to game");
+                Console.WriteLine("\t2. Save Game");
+                Console.WriteLine("\t3. Quit Game");
                 Console.WriteLine("\t==========================");
-                var option = GameEngine.UserInputTest("\t(1-5)>", "\tInvalid input, please try again!", 1, 5);
+                var option = GameEngine.UserInputTest("\t(1-4)>", "\tInvalid input, please try again!", 1, 4);
 
                 switch (option)
                 {
                     case 1:
-                        MapBuider.MapsMenu();
+                        temp = true;
                         break;
                     case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
                         var slot = SaveGameMenu("save");
                         if (slot != 7) { GameSaver.SaveGame(slot); }
                         break;
-                    case 5:
+                    case 3:
                         Console.WriteLine("\tThank you and goodbye!\n\tPress any key to exit.......");
                         Console.ReadKey();
                         Environment.Exit(0);

@@ -18,25 +18,10 @@ namespace Risk
                 Colour.PrintPlayer(player.Colour, "\t" + player.Name);
                 Console.WriteLine(" please select a territory you wish to occupy");
 
-                Console.WriteLine("\n\tTerritory\t\tContinent\tOccupant\tSelect");
-                Console.WriteLine("\t============================================================================");
-                foreach (var territory in board.GetEarth().Territories)
-                {
-                    Console.Write("\t");
-                    Colour.PrintLand(territory.Continent, territory.Name);
-                    Console.Write(GameEngine.BufferBuilder(territory.Name.Length, 21));
+                MapBuilder.ShowEntireWorld();
 
-                    Colour.PrintLand(territory.Continent, "\t" + territory.Continent);
-                    Console.Write(GameEngine.BufferBuilder(territory.Continent.Length, 13));
-
-                    if (territory.Occupant == "Empty") { Console.Write("\t" + territory.Occupant); }
-                    else { Colour.PrintPlayer(GameEngine.GetPlayerColourIndex(territory.Occupant), "\t" + territory.Occupant); }
-                    Console.Write(GameEngine.BufferBuilder(territory.Occupant.Length, 15));
-
-                    Console.Write("Number : " + territory.TerriroryNumber + "\n");
-                }
                 var selection = GameEngine.UserInputTest("\n\tEnter territory number (1-42)>", "\tInvalid selection!", 1, 42);
-                var result = FindTerritory(selection, board);
+                var result = FindTerritory(selection);
                 if (CheckIfOccupied(result, player) == false)
                 {
                     board.SetCurrentPlayer();
@@ -47,6 +32,14 @@ namespace Risk
                     selected = true;
                 }
             }
+
+            Console.Clear();
+            Colour.SouthAmericaRed("\t     **** Risk! ****\n");
+            Console.WriteLine("\t===========================================");
+            Console.WriteLine("\tAll territories are now occupied.");
+            Console.WriteLine("\tDeploy remaining armies to your territories.");
+            Console.WriteLine("\tPress any key to continue....");
+            Console.ReadKey();
         }
 
         public static void DeployArmies()
@@ -65,50 +58,14 @@ namespace Risk
                 Console.Write("\tYou have ");
                 Colour.PrintPlayer(player.Colour, player.Armies.ToString());
                 Console.Write(" armies left to deploy");
-                Console.WriteLine("\n\tNumber Territory\t\tContinent\tOccupant\tArmies\tNeighbours\t\t   Occupant\t\tArmies");
-                Console.WriteLine("\t======================================================================================================================");
-                foreach (var territory in board.GetEarth().Territories)
-                {
-                    if (territory.Occupant == player.Name)
-                    {
-                        Console.Write("\n\t");
-
-                        Colour.PrintLand(territory.Continent, territory.TerriroryNumber.ToString());
-                        Console.Write(GameEngine.BufferBuilder(territory.TerriroryNumber.ToString().Length, 7));
-
-                        Colour.PrintLand(territory.Continent, territory.Name);
-                        Console.Write(GameEngine.BufferBuilder(territory.Name.Length, 21));
-
-                        Colour.PrintLand(territory.Continent, "\t" + territory.Continent);
-                        Console.Write(GameEngine.BufferBuilder(territory.Continent.Length, 13));
-
-                        Colour.PrintPlayer(GameEngine.GetPlayerColourIndex(territory.Occupant), "\t" + territory.Occupant);
-                        Console.Write(GameEngine.BufferBuilder(territory.Occupant.Length, 15));
-
-                        Console.Write("\t" + territory.Armies);
-                        Console.Write(GameEngine.BufferBuilder(territory.Armies.ToString().Length, 8));
-
-                        foreach (var neighbour in territory.Neighbours)
-                        {
-                            Colour.PrintLand(neighbour.Continent, neighbour.Name);
-                            Console.Write(GameEngine.BufferBuilder(neighbour.Name.Length, 21));
-
-                            Colour.PrintPlayer(GameEngine.GetPlayerColourIndex(neighbour.Occupant), "\t" + neighbour.Occupant);
-                            Console.Write(GameEngine.BufferBuilder(neighbour.Occupant.Length, 15));
-
-                            Console.Write("\t" + neighbour.Armies);
-                            Console.Write(GameEngine.BufferBuilder(neighbour.Armies.ToString().Length, 6));
-                            Console.Write("\n");
-                            Console.Write(GameEngine.BufferBuilder(0, 80));
-                        }
-                    }
-                }
+                
+                MapBuilder.ShowEntireWorld();
 
                 var isPlayersTerritory = false;
                 while (isPlayersTerritory == false)
                 {
                     var selection = GameEngine.UserInputTest("\n\tEnter territory number (1-42)>", "\tInvalid selection!", 1, 42);
-                    var country = FindTerritory(selection, board);
+                    var country = FindTerritory(selection);
                     if (country.Occupant == player.Name)
                     {
                         country.Armies += 1;
@@ -211,10 +168,20 @@ namespace Risk
                 Console.ReadKey();
                 occupied = true;
             }
-
-            territory.Occupant = player.Name;
-            territory.Armies = 1;
-            player.Armies -= 1;
+            else if (territory.Occupant == player.Name)
+            {
+                Console.WriteLine("\tYou already occupy that territory, please select another territory!");
+                Console.WriteLine("\tPress any key to continue.....");
+                Console.ReadKey();
+                occupied = true;
+            }
+            else
+            {
+                territory.Occupant = player.Name;
+                territory.Armies = 1;
+                player.Armies -= 1;
+            }
+            
             return occupied;
         }
 
@@ -237,9 +204,10 @@ namespace Risk
             return false;
         }
 
-        private static Territory FindTerritory(int selection, GameBoard board)
+        public static Territory FindTerritory(int selection)
         {
-            foreach (var territory in board.GetEarth().Territories)
+            var territories = GameBoard.GetBoard().GetEarth().Territories;
+            foreach (var territory in territories)
             {
                 if (territory.TerriroryNumber == selection)
                 {

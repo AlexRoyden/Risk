@@ -40,8 +40,8 @@ namespace Risk
             {
                 var armyCount = GameBoard.GetBoard().GetPlayerByIndex(0).Armies;
                 BoardPopulator.AutoPopulate();
-                MapBuider.ShowWorld();
-                Console.WriteLine("\t==========================");
+                MapBuilder.ShowEntireWorld();
+                Console.WriteLine("\n\t==========================");
                 Console.WriteLine("\t1. Confirm board layout");
                 Console.WriteLine("\t2. Change board layout");
                 Console.WriteLine("\t3. Quit Game");

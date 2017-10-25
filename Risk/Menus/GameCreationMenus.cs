@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Risk
+namespace Risk.Menus
 {
     class GameCreationMenus
     {
