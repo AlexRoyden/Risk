@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Risk
 {
-    class Battle
+    class DiceTrippleBattle : BattleOutcome
     {
-        public static void BeginBattle(Attack attack)
+        public override void Fight(Attack attack)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

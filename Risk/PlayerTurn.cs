@@ -21,7 +21,7 @@ namespace Risk
             Colour.SouthAmericaRed("\t     **** Risk! ****\n");
             Console.WriteLine("\t==========================");
             GameEngine.Timer("Battle phase about to begin");
-            Battle.BattleMenu();
+            BattleBuilder.BattleMenu();
 
             GamePlayMenus.PlayerTurnMenu();
         }
