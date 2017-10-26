@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Risk.Menus;
 
 namespace Risk
 {
@@ -30,7 +31,8 @@ namespace Risk
                 Console.WriteLine("\n\t1. Play three of a kind");
                 Console.WriteLine("\t2. Play one of each");
                 Console.WriteLine("\t3. Play a wild card");
-                Console.WriteLine("\t4. Commence deployment of reinforcements");
+                Console.WriteLine("\t4. Game Menu");
+                Console.WriteLine("\t5. Commence deployment of reinforcements");
                 Console.WriteLine("\t==========================");
                 var option = GameEngine.UserInputTest("\t(1-4)>", "\tInvalid input, please try again!", 1, 4);
 
@@ -46,6 +48,9 @@ namespace Risk
                         PlayWildCard();
                         break;
                     case 4:
+                        GamePlayMenus.PlayerTurnMenu();
+                        break;
+                    case 5:
                         doneTrading = true;
                         break;
                     default:

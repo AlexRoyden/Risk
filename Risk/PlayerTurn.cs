@@ -17,6 +17,12 @@ namespace Risk
             board.CurrentPlayer.Armies = ArmyBuilder.ReinforcmentsCalculator();
             TroopDeployer.DeployTroops(board.CurrentPlayer);
 
+            Console.Clear();
+            Colour.SouthAmericaRed("\t     **** Risk! ****\n");
+            Console.WriteLine("\t==========================");
+            GameEngine.Timer("Battle phase about to begin");
+            Battle.BattleMenu();
+
             GamePlayMenus.PlayerTurnMenu();
         }
     }

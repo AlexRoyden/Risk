@@ -55,6 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArmyBuilder.cs" />
+    <Compile Include="Attack.cs" />
+    <Compile Include="Battle.cs" />
     <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardPopulator.cs" />
     <Compile Include="Card.cs" />
