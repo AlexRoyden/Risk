@@ -16,7 +16,7 @@ namespace Risk
             var path = PathFinder(slot);
             LoadGame(path);
             InitializeBoard();
-            Battle.BattleMenu();
+            BattleBuilder.BattleMenu();
         }
 
         public override void InitializeBoard()

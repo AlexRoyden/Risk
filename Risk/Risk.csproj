@@ -57,11 +57,16 @@
     <Compile Include="ArmyBuilder.cs" />
     <Compile Include="Attack.cs" />
     <Compile Include="Battle.cs" />
+    <Compile Include="BattleBuilder.cs" />
+    <Compile Include="BattleOutcome.cs" />
     <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardPopulator.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardDeck.cs" />
     <Compile Include="CardTradeingEngine.cs" />
+    <Compile Include="DiceDoubleBattle.cs" />
+    <Compile Include="DiceSingleBattle.cs" />
+    <Compile Include="DiceTrippleBattle.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Menus\GamePlayMenus.cs" />
     <Compile Include="LoadedGame.cs" />
