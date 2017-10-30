@@ -10,7 +10,18 @@ namespace Risk
     {
         public override void Fight(Attack attack)
         {
-            throw new NotImplementedException();
+            if (attack.AttackDice1 != 0 && attack.AttackDice2 != 0 && attack.AttackDice3 != 0)
+            {
+                Battle.BattleResolve(attack, "(First round)");
+                if (attack.DefendingTerritory.Armies != 0)
+                {
+                    Battle.BattleResolve(attack, "(Second round)");
+                }
+            }
+            else if (Successor != null)
+            {
+                Successor.Fight(attack);
+            }
         }
     }
 }

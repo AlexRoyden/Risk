@@ -23,7 +23,8 @@ namespace Risk
                 switch (option)
                 {
                     case 1:
-                        BuildBattle();
+                        var attack = BuildBattle();
+                        Battle.BeginBattle(attack);
                         break;
                     case 2:
                         GamePlayMenus.PlayerTurnMenu();
@@ -38,7 +39,7 @@ namespace Risk
             }
         }
 
-        private static void BuildBattle()
+        private static Attack BuildBattle()
         {
             var board = GameBoard.GetBoard();
             var attackingTerritory = ChooseAttacker();
@@ -48,11 +49,11 @@ namespace Risk
             var attack = new Attack(attacker, defender, attackingTerritory, defendingTerritory);
 
             ArrangeBattle(attack);
-            BattleRoll(attack);
-            Console.ReadKey();
+            BattleRollOptions(attack);
+            return attack;
         }
 
-        private static void BattleRoll(Attack attack)
+        private static void BattleRollOptions(Attack attack)
         {
             var rnd = GameBoard.GetBoard().GetRandom();
             if (attack.AttackDiceCount == 1)
