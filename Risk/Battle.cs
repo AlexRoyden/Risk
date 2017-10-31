@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Risk
 {
@@ -20,6 +16,108 @@ namespace Risk
             GameEngine.Timer("Rolling dice");
 
             singleDie.Fight(attack);
+
+            if (attack.DefendingTerritory.Armies == 0)
+            {
+                TerritoryConquered(attack);
+            }
+        }
+
+        private static void TerritoryConquered(Attack attack)
+        {
+            Console.Clear();
+            Colour.SouthAmericaRed("\t     **** Risk! ****\n");
+            Console.WriteLine("\t==========================");
+            Console.WriteLine("\t       Victory!");
+            Colour.PrintPlayer(attack.Attacker.Colour, "\t" + attack.Attacker.Name);
+            Console.Write(", you have defeated all of the armies in ");
+            Colour.PrintLand(attack.DefendingTerritory.Continent, attack.DefendingTerritory.Name);
+            if (attack.AttackingTerritory.Armies == 2)
+            {
+                Console.WriteLine("\n\tOne army has been moved to {0}.", attack.Defender.Name);
+                attack.AttackingTerritory.Armies -= 1;
+                attack.DefendingTerritory.Armies += 1;
+                attack.DefendingTerritory.Occupant = attack.Attacker.Name;
+            }
+            else
+            {
+                Console.WriteLine("\n\tSelect the number of armies you wish to move from {0}, to occupy {1} with.",
+                    attack.AttackingTerritory.Name, attack.DefendingTerritory.Name);
+                var armies = attack.AttackingTerritory.Armies - 1;
+                var prompt = "\t(1-" + armies + ")>";
+                var option = GameEngine.UserInputTest(prompt, "\tInvalid input, please try again!", 1, armies);
+                attack.AttackingTerritory.Armies -= option;
+                attack.DefendingTerritory.Armies += option;
+                attack.DefendingTerritory.Occupant = attack.Attacker.Name;
+            }
+            attack.Attacker.ConqueredDuringTurn += 1;
+            Console.WriteLine("\tPress any key to continue....");
+            Console.ReadKey();
+
+            CheckUserHasTerritories(attack.Defender, attack.Attacker);
+        }
+
+        private static void CheckUserHasTerritories(Player loser, Player winner)
+        {
+            var board = GameBoard.GetBoard();
+            var count = 0;
+
+            foreach (var territory in board.GetEarth().Territories)
+            {
+                if (territory.Occupant == loser.Name)
+                {
+                    count++;
+                }
+            }
+
+            if (count == 0)
+            {
+                Console.Clear();
+                Colour.SouthAmericaRed("\t     **** Risk! ****\n");
+                Console.WriteLine("\t==========================\n");
+                Colour.PrintPlayer(loser.Colour, "\t" + loser.Name);
+                Console.WriteLine(", You have no remaining territories.");
+                Console.WriteLine("You have been annihilated, ");
+                Colour.SouthAmericaRed("your game is over!!!!");
+                Console.WriteLine("\tPress any key to continue....");
+                Console.ReadKey();
+
+                if (loser.Cards.Count > 0)
+                {
+                    foreach (var card in loser.Cards)
+                    {
+                        winner.Cards.Add(card);
+                    }
+
+                    Console.Clear();
+                    Colour.SouthAmericaRed("\t     **** Risk! ****\n");
+                    Console.WriteLine("\t==========================\n");
+                    Colour.PrintPlayer(winner.Colour, "\t" + winner.Name);
+                    Console.Write(", You have received all of ");
+                    Colour.PrintPlayer(loser.Colour, loser.Name + "'s ");
+                    Console.Write("game cards.");
+
+                    if (winner.Cards.Count > 6)
+                    {
+                        Console.WriteLine("\tYou now have more than 6 game cards.");
+                        Console.WriteLine("\tYou must trade cards now.");
+                        Console.WriteLine("\tPress any key to continue....");
+                        Console.ReadKey();
+                        CardTradeingEngine.TradeMenu();
+                    }
+                    else
+                    {
+                        Console.WriteLine("\tPress any key to continue....");
+                        Console.ReadKey();
+                    }
+                }
+
+                var playerList = board.GetPlayerList();
+                var index = GameEngine.GetPlayerIndex(loser.Name);
+                playerList.RemoveAt(index);
+
+                board.SetPlayerTurnQueue(GameEngine.CreateTurnQueue(board.CurrentPlayer));
+            }
         }
 
         public static void BattleResolve(Attack attack, string round)

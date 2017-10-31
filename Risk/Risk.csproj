@@ -85,6 +85,7 @@
     <Compile Include="QuickGame.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayersBuilder.cs" />
+    <Compile Include="TeritoriesFortification.cs" />
     <Compile Include="TroopDeployer.cs" />
     <Compile Include="Risk.cs" />
     <Compile Include="SaveGameMetaData.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="ITerritory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="ConfigFiles\App.config" />
     <None Include="ConfigFiles\CardDeckConfig.json" />
     <None Include="SaveFiles\Save2.json" />

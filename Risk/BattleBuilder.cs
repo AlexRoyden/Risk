@@ -10,10 +10,19 @@ namespace Risk
             var complete = false;
             while (complete == false)
             {
+                //End game event
+                if (GameBoard.GetBoard().GetPlayerList().Count < 2)
+                {
+                    
+                }
+                var player = GameBoard.GetBoard().CurrentPlayer;
                 Console.Clear();
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
                 Console.WriteLine("\t==========================");
                 Console.WriteLine("\t       Battle Menu");
+                Console.Write("\tCurrently ");
+                Colour.PrintPlayer(player.Colour, player.Name + "'s");
+                Console.Write(" turn.\n");
                 Console.WriteLine("\t1. Select territory to attack");
                 Console.WriteLine("\t2. Game Menu");
                 Console.WriteLine("\t3. Finish Fighting");
@@ -141,7 +150,7 @@ namespace Risk
                 }
                 else
                 {
-                    Console.WriteLine("Your territory must have at least one more army than the number of dice you are rolling.");
+                    Console.WriteLine("\tYour territory must have at least one more army than the number of dice you are rolling.");
                 }
             }
             else if (playerType == "defender")
@@ -154,7 +163,7 @@ namespace Risk
                 {
                     diceAllowed = true;
                 }
-                else { Console.WriteLine("Must have more than one army if selecting 2 dice!");}
+                else { Console.WriteLine("\tMust have more than one army if selecting 2 dice!");}
             }
             return diceAllowed;
         }

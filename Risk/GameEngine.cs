@@ -41,7 +41,6 @@ namespace Risk
                     highest = 0;
                 }
             }
-            
             return winner;
         }
 

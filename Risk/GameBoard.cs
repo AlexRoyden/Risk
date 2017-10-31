@@ -10,7 +10,7 @@ namespace Risk
         private Earth _earth;
         private Queue<Card> _cards;
         private CardDeck _usedCards;
-        private int _tradedCardSets;
+        private int _tradedCardSetsCount;
         private List<Player> _players;
         public Player CurrentPlayer;
         private Queue<Player> _playerTurnQueue;
@@ -21,7 +21,7 @@ namespace Risk
             _earth =  BoardBuilder.LoadNewTerritories();
             _cards = BoardBuilder.LoadCards(_random);
             _usedCards = new CardDeck();
-            _tradedCardSets = 0;
+            _tradedCardSetsCount = 0;
             _players = new List<Player>();
             CurrentPlayer = new Player();
             _playerTurnQueue = new Queue<Player>();
@@ -88,7 +88,15 @@ namespace Risk
             {
                 _usedCards.Cards.Add(card);
             }
-            _tradedCardSets += 1;
+            _tradedCardSetsCount += 1;
+        }
+
+        public void AddDefeatedPlayerCardsToPile(List<Card> cards)
+        {
+            foreach (var card in cards)
+            {
+                _usedCards.Cards.Add(card);
+            }
         }
 
         public void SetUsedCards(CardDeck cards)
@@ -103,12 +111,12 @@ namespace Risk
 
         public int GetTradedCardSets()
         {
-            return _tradedCardSets;
+            return _tradedCardSetsCount;
         }
 
         public void SetTradedCardSets(int count)
         {
-            _tradedCardSets = count;
+            _tradedCardSetsCount = count;
         }
 
         public void SetPlayerList(List<Player> list)
@@ -161,24 +169,6 @@ namespace Risk
 
                 CurrentPlayer = _playerTurnQueue.Dequeue();
             }
-            
-            //var match = false;
-
-            //while (match == false)
-            //{
-            //    foreach (var person in _players)
-            //    {
-            //        if (person.Name == newPlayer.Name)
-            //        {
-            //            CurrentPlayer.Name = newPlayer.Name;
-            //            CurrentPlayer.Armies = newPlayer.Armies;
-            //            CurrentPlayer.Colour = newPlayer.Colour;
-            //            _playerTurnQueue.Enqueue(newPlayer);
-
-            //            match = true;
-            //        }
-            //    }
-            //}
         }
 
         public Queue<Player> GetCurrentPlayerQueue()

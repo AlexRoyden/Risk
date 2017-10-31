@@ -27,7 +27,7 @@ namespace Risk
                     var country = BoardPopulator.FindTerritory(selection);
                     if (country.Occupant == player.Name)
                     {
-                        var troops = GameEngine.UserInputTest("\n\tEnter number of units you wish to send.",
+                        var troops = GameEngine.UserInputTest("\n\tEnter number of units you wish to send (1-" + player.Armies + ")>",
                         "\tInvalid selection!", 1, player.Armies);
 
                         country.Armies += troops;
