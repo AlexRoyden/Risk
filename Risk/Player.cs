@@ -9,14 +9,13 @@ namespace Risk
         public int Colour { get; set; }
         public List<Card> Cards { get; set; }
         public int ConqueredDuringTurn { get; set; }
-        public int Phase { get; set; }
+        public int GameEntryPoint { get; set; }
 
         public Player(string name, int armies, int colour)
         {
             Name = name;
             Armies = armies;
             Colour = colour;
-            Cards = new List<Card>();
         }
 
         public Player()

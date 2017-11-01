@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 
 namespace Risk
 {
@@ -13,17 +12,13 @@ namespace Risk
             while (playerList.Count > 1)
             {
                 var player = board.CurrentPlayer;
-
-                Console.Clear();
-                Colour.SouthAmericaRed("\t     **** Risk! ****\n");
-                Console.WriteLine("\t==========================\n");
                 GameEngine.Timer(player.Name + " Your turn is about to begin ");
 
-                if (player.Phase != 2 && player.Phase != 3)
+                if (player.GameEntryPoint != 2 && player.GameEntryPoint != 3)
                 {
                     ReinforcementsPhase(board);
                 }
-                if (player.Phase != 3)
+                if (player.GameEntryPoint != 3)
                 {
                     BattlePhase();
                 }
@@ -31,15 +26,21 @@ namespace Risk
 
                 if (player.ConqueredDuringTurn > 0)
                 {
-                    Console.Clear();
-                    Colour.SouthAmericaRed("\t     **** Risk! ****\n");
-                    Console.WriteLine("\t==========================");
                     GameEngine.Timer("You receive a game card for conquerering a territory this turn.");
-                    player.Cards.Add(board.GetGameCard());
+                    var card = board.GetGameCard();
+                    if (player.Cards == null)
+                    {
+                        var temp = GameBoard.GetBoard().GetPlayerByName(player.Name);
+                        temp.Cards = new List<Card> {card};
+                    }
+                    else
+                    {
+                        player.Cards.Add(card);
+                    }
                 }
 
                 player.ConqueredDuringTurn = 0;
-                player.Phase = 0;
+                player.GameEntryPoint = 0;
                 board.SetCurrentPlayer();
             }
         }
@@ -53,10 +54,7 @@ namespace Risk
         private static void BattlePhase()
         {
             var player = GameBoard.GetBoard().CurrentPlayer;
-            player.Phase = 2;
-            Console.Clear();
-            Colour.SouthAmericaRed("\t     **** Risk! ****\n");
-            Console.WriteLine("\t==========================");
+            player.GameEntryPoint = 2;
             GameEngine.Timer("Battle phase about to begin");
             BattleBuilder.BattleMenu();
         }
@@ -64,11 +62,9 @@ namespace Risk
         private static void TroopMovementPhase()
         {
             var player = GameBoard.GetBoard().CurrentPlayer;
-            player.Phase = 3;
-            Console.Clear();
-            Colour.SouthAmericaRed("\t     **** Risk! ****\n");
-            Console.WriteLine("\t==================================");
+            player.GameEntryPoint = 3;
             GameEngine.Timer("Fortification phase about to begin");
+            TeritoriesFortification.FortificationMenu();
         }
     }
 }

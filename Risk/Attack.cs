@@ -15,13 +15,5 @@
 
         public Territory AttackingTerritory { get; set; }
         public Territory DefendingTerritory { get; set; }
-
-        public Attack(Player attacker, Player defender, Territory attack, Territory defend)
-        {
-            Attacker = attacker;
-            Defender = defender;
-            AttackingTerritory = attack;
-            DefendingTerritory = defend;
-        }
     }
 }

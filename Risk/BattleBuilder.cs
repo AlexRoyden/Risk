@@ -33,7 +33,10 @@ namespace Risk
                 {
                     case 1:
                         var attack = BuildBattle();
-                        Battle.BeginBattle(attack);
+                        if (attack.AttackingTerritory != null)
+                        {
+                            Battle.BeginBattle(attack);
+                        }
                         break;
                     case 2:
                         GamePlayMenus.PlayerTurnMenu();
@@ -51,14 +54,24 @@ namespace Risk
         private static Attack BuildBattle()
         {
             var board = GameBoard.GetBoard();
+            var attack = new Attack();
             var attackingTerritory = ChooseAttacker();
-            var defendingTerritory = ChooseDefender(attackingTerritory);
-            var attacker = board.GetPlayerByName(attackingTerritory.Occupant);
-            var defender = board.GetPlayerByName(defendingTerritory.Occupant);
-            var attack = new Attack(attacker, defender, attackingTerritory, defendingTerritory);
 
-            ArrangeBattle(attack);
-            BattleRollOptions(attack);
+            if (attackingTerritory.Name != null)
+            {
+                var defendingTerritory = ChooseDefender(attackingTerritory);
+                if (defendingTerritory.Name != null)
+                {
+                    var attacker = board.GetPlayerByName(attackingTerritory.Occupant);
+                    var defender = board.GetPlayerByName(defendingTerritory.Occupant);
+                    attack.Attacker = attacker;
+                    attack.Defender = defender;
+                    attack.AttackingTerritory = attackingTerritory;
+                    attack.DefendingTerritory = defendingTerritory;
+                    ArrangeBattle(attack);
+                    BattleRollOptions(attack);
+                }
+            }
             return attack;
         }
 
@@ -185,20 +198,28 @@ namespace Risk
                 Colour.SouthAmericaRed("attack with.\n");
 
                 MapBuilder.ShowEntireWorld();
-                var option = GameEngine.UserInputTest("\n\t(1-42)>", "\tInvalid input, please try again!", 1, 42);
+                Console.WriteLine("\n\tEnter 43 to return to menu.");
+                var option = GameEngine.UserInputTest("\t(1-43)>", "\tInvalid input, please try again!", 1, 43);
 
-                territory =  BoardPopulator.FindTerritory(option);
-                if (territory.Occupant != player.Name)
+                if (option != 43)
                 {
-                    Console.WriteLine("\tTerritory is occupied by another player.");
-                    Console.WriteLine("\tPress any key to retry....");
-                    Console.ReadKey();
-                }
-                else if (territory.Armies < 2)
-                {
-                    Console.WriteLine("\tTerritory must have at least 2 armies to attack with.");
-                    Console.WriteLine("\tPress any key to retry....");
-                    Console.ReadKey();
+                    territory = BoardPopulator.FindTerritory(option);
+                    if (territory.Occupant != player.Name)
+                    {
+                        Console.WriteLine("\tTerritory is occupied by another player.");
+                        Console.WriteLine("\tPress any key to retry....");
+                        Console.ReadKey();
+                    }
+                    else if (territory.Armies < 2)
+                    {
+                        Console.WriteLine("\tTerritory must have at least 2 armies to attack with.");
+                        Console.WriteLine("\tPress any key to retry....");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        confirmed = true;
+                    }
                 }
                 else
                 {
@@ -225,20 +246,35 @@ namespace Risk
                 Colour.SouthAmericaRed("Attack.\n");
 
                 var numberMap = MapBuilder.ShowTerritoriesNeighbours(attacker);
-                var option = GameEngine.UserInputTest("\n\t(Territory number)>", "\tInvalid input, please try again!", 1,
-                    numberMap.Count);
+                var highest = numberMap.Count + 1;
+                Console.WriteLine("\tTo return to the main menu, enter " + highest);
+
+                var prompt = "\n\t(1-" + highest + ")>";
+                var option = GameEngine.UserInputTest(prompt, "\tInvalid input, please try again!", 1, highest);
                 int result;
                 numberMap.TryGetValue(option, out result);
-                territory = BoardPopulator.FindTerritory(result);
-                if (territory != null && territory.Occupant != player.Name)
+                if (option == highest)
                 {
-                    confirmed = true;
+                    result = highest;
+                    
+                }
+                if (result != highest)
+                {
+                    territory = BoardPopulator.FindTerritory(result);
+                    if (territory != null && territory.Occupant != player.Name)
+                    {
+                        confirmed = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\tCannot attack a territory which you occupy!");
+                        Console.WriteLine("\tPress any key to continue....");
+                        Console.ReadKey();
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("\tCannot attack a territory which you occupy!");
-                    Console.WriteLine("\tPress any key to continue....");
-                    Console.ReadKey();
+                    confirmed = true;
                 }
             }
             return territory;

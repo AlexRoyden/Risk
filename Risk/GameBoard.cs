@@ -155,19 +155,28 @@ namespace Risk
         {
             if (CurrentPlayer.Name == null)
             {
-                CurrentPlayer = _playerTurnQueue.Dequeue();
+                //CurrentPlayer = _playerTurnQueue.Dequeue();
+                var turn = _playerTurnQueue.Dequeue();
+                var player = GetPlayerByName(turn.Name);
+                CurrentPlayer = player;
+                _playerTurnQueue.Enqueue(turn);
             }
             else
             {
-                var oldPlayer = new Player
-                {
-                    Name = CurrentPlayer.Name,
-                    Armies = CurrentPlayer.Armies,
-                    Colour = CurrentPlayer.Colour
-                };
-                _playerTurnQueue.Enqueue(oldPlayer);
-
-                CurrentPlayer = _playerTurnQueue.Dequeue();
+                //var oldPlayer = new Player
+                //{
+                //    Name = CurrentPlayer.Name,
+                //    Armies = CurrentPlayer.Armies,
+                //    Colour = CurrentPlayer.Colour
+                //};
+                //_playerTurnQueue.Enqueue(oldPlayer);
+                GetPlayerByName(CurrentPlayer.Name);
+                _playerTurnQueue.Enqueue(CurrentPlayer);
+                
+                var turn = _playerTurnQueue.Dequeue();
+                var newPlayer = GetPlayerByName(turn.Name);
+                CurrentPlayer = newPlayer;
+                _playerTurnQueue.Enqueue(turn);
             }
         }
 

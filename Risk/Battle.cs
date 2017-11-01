@@ -50,7 +50,7 @@ namespace Risk
                 attack.DefendingTerritory.Armies += option;
                 attack.DefendingTerritory.Occupant = attack.Attacker.Name;
             }
-            attack.Attacker.ConqueredDuringTurn += 1;
+            GameBoard.GetBoard().CurrentPlayer.ConqueredDuringTurn += 1;
             Console.WriteLine("\tPress any key to continue....");
             Console.ReadKey();
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Risk
+﻿namespace Risk
 {
     class DiceDoubleBattle : BattleOutcome
     {
@@ -12,8 +6,9 @@ namespace Risk
         {
             if (attack.AttackDice3 == 0)
             {
+                bool twoDefendDie = attack.DefendDice2 != 0;
                 Battle.BattleResolve(attack, "(First round)");
-                if (attack.DefendingTerritory.Armies != 0)
+                if (attack.DefendingTerritory.Armies > 0 && twoDefendDie)
                 {
                     Battle.BattleResolve(attack, "(Second round)");
                 }
