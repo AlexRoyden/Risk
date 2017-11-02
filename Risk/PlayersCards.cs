@@ -17,16 +17,44 @@ namespace Risk
                 switch (card.Army)
                 {
                     case "Infantry":
-                        Infantry.Add(card);
+                        if (Infantry == null)
+                        {
+                            Infantry = new List<Card> {card};
+                        }
+                        else
+                        {
+                            Infantry.Add(card);
+                        }
                         break;
                     case "Cavalry":
-                        Cavalry.Add(card);
+                        if (Cavalry == null)
+                        {
+                            Cavalry = new List<Card> { card };
+                        }
+                        else
+                        {
+                            Cavalry.Add(card);
+                        }
                         break;
                     case "Artillery":
-                        Artillary.Add(card);
+                        if (Artillary == null)
+                        {
+                            Artillary = new List<Card> { card };
+                        }
+                        else
+                        {
+                            Artillary.Add(card);
+                        }
                         break;
                     case "Wild":
-                        Wild.Add(card);
+                        if (Wild == null)
+                        {
+                            Wild = new List<Card> { card };
+                        }
+                        else
+                        {
+                            Wild.Add(card);
+                        }
                         break;
                     default:
                         Console.WriteLine("Card Error");
@@ -36,7 +64,7 @@ namespace Risk
         }
 
         /// <summary>
-        /// retruns List<Card> containing all players cards
+        /// retruns List<Card> containing ALL players cards
         /// </summary>
         public List<Card> GetPlayerCards()
         {

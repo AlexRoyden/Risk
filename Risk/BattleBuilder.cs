@@ -15,6 +15,7 @@ namespace Risk
                 {
                     
                 }
+
                 var player = GameBoard.GetBoard().CurrentPlayer;
                 Console.Clear();
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
@@ -157,13 +158,13 @@ namespace Risk
             var diceAllowed = false;
             if (playerType == "attacker")
             {
-                if (territory.Armies + 1 > dieCount)
+                if (territory.Armies > dieCount)
                 {
                     diceAllowed = true;
                 }
                 else
                 {
-                    Console.WriteLine("\tYour territory must have at least one more army than the number of dice you are rolling.");
+                    Console.WriteLine("\tYour territory must have more armies than the number of dice you are rolling.");
                 }
             }
             else if (playerType == "defender")

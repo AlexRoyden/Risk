@@ -86,9 +86,15 @@ namespace Risk
         {
             foreach (var card in cards)
             {
-                _usedCards.Cards.Add(card);
+                if (_usedCards.Cards == null)
+                {
+                    _usedCards.Cards = new List<Card> {card};
+                }
+                else
+                {
+                    _usedCards.Cards.Add(card);
+                }
             }
-            _tradedCardSetsCount += 1;
         }
 
         public void AddDefeatedPlayerCardsToPile(List<Card> cards)
@@ -155,24 +161,16 @@ namespace Risk
         {
             if (CurrentPlayer.Name == null)
             {
-                //CurrentPlayer = _playerTurnQueue.Dequeue();
                 var turn = _playerTurnQueue.Dequeue();
-                var player = GetPlayerByName(turn.Name);
-                CurrentPlayer = player;
+                var newPlayer = GetPlayerByName(turn.Name);
+                CurrentPlayer = newPlayer;
                 _playerTurnQueue.Enqueue(turn);
             }
             else
             {
-                //var oldPlayer = new Player
-                //{
-                //    Name = CurrentPlayer.Name,
-                //    Armies = CurrentPlayer.Armies,
-                //    Colour = CurrentPlayer.Colour
-                //};
-                //_playerTurnQueue.Enqueue(oldPlayer);
-                GetPlayerByName(CurrentPlayer.Name);
-                _playerTurnQueue.Enqueue(CurrentPlayer);
-                
+                var oldPlayer = GameEngine.GetPlayerIndex(CurrentPlayer.Name);
+                _players[oldPlayer] = CurrentPlayer;
+
                 var turn = _playerTurnQueue.Dequeue();
                 var newPlayer = GetPlayerByName(turn.Name);
                 CurrentPlayer = newPlayer;

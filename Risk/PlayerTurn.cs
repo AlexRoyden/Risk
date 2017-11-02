@@ -12,6 +12,10 @@ namespace Risk
             while (playerList.Count > 1)
             {
                 var player = board.CurrentPlayer;
+                if (player.GameEntryPoint == 0)
+                {
+                    player.ConqueredDuringTurn = 0;
+                }
                 GameEngine.Timer(player.Name + " Your turn is about to begin ");
 
                 if (player.GameEntryPoint != 2 && player.GameEntryPoint != 3)
@@ -26,12 +30,11 @@ namespace Risk
 
                 if (player.ConqueredDuringTurn > 0)
                 {
-                    GameEngine.Timer("You receive a game card for conquerering a territory this turn.");
+                    GameEngine.Timer("You conquered a territory, receiving a Game Card.");
                     var card = board.GetGameCard();
                     if (player.Cards == null)
                     {
-                        var temp = GameBoard.GetBoard().GetPlayerByName(player.Name);
-                        temp.Cards = new List<Card> {card};
+                        player.Cards = new List<Card> {card};
                     }
                     else
                     {
@@ -39,7 +42,6 @@ namespace Risk
                     }
                 }
 
-                player.ConqueredDuringTurn = 0;
                 player.GameEntryPoint = 0;
                 board.SetCurrentPlayer();
             }

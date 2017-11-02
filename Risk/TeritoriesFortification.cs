@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Risk.Menus;
 
 namespace Risk
@@ -14,10 +10,14 @@ namespace Risk
             var complete = false;
             while (complete == false)
             {
+                var player = GameBoard.GetBoard().CurrentPlayer;
                 Console.Clear();
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
                 Console.WriteLine("\t==========================");
                 Console.WriteLine("\t    Fortification Menu");
+                Console.Write("\tCurrently ");
+                Colour.PrintPlayer(player.Colour, player.Name + "'s");
+                Console.Write(" turn.\n");
                 Console.WriteLine("\t1. Move Troops");
                 Console.WriteLine("\t2. Game Menu");
                 Console.WriteLine("\t3. End Turn");

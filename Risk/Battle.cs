@@ -19,6 +19,7 @@ namespace Risk
 
             if (attack.DefendingTerritory.Armies == 0)
             {
+
                 TerritoryConquered(attack);
             }
         }
