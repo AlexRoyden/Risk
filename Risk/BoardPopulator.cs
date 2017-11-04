@@ -76,13 +76,11 @@ namespace Risk
                     {
                         Console.WriteLine("\tYou have selected a territory that is occupied by another player!\n");
                     }
-                    
                 }
                 
                 if (player.Armies == 0)
                 {
                     finished++;
-                    
                 }
                 board.SetCurrentPlayer();
             }

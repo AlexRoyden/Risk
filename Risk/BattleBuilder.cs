@@ -3,19 +3,13 @@ using Risk.Menus;
 
 namespace Risk
 {
-    class BattleBuilder
+    public class BattleBuilder
     {
         public static void BattleMenu()
         {
             var complete = false;
             while (complete == false)
             {
-                //End game event
-                if (GameBoard.GetBoard().GetPlayerList().Count < 2)
-                {
-                    
-                }
-
                 var player = GameBoard.GetBoard().CurrentPlayer;
                 Console.Clear();
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
@@ -36,7 +30,9 @@ namespace Risk
                         var attack = BuildBattle();
                         if (attack.AttackingTerritory != null)
                         {
-                            Battle.BeginBattle(attack);
+                            var battle = new Battle();
+                            var unused = new WorldConquered(battle);
+                            battle.BeginBattle(attack);
                         }
                         break;
                     case 2:
@@ -153,7 +149,7 @@ namespace Risk
             }
         }
 
-        private static bool CheckDieOption(int dieCount, string playerType, Territory territory)
+        public static bool CheckDieOption(int dieCount, string playerType, Territory territory)
         {
             var diceAllowed = false;
             if (playerType == "attacker")
@@ -252,15 +248,15 @@ namespace Risk
 
                 var prompt = "\n\t(1-" + highest + ")>";
                 var option = GameEngine.UserInputTest(prompt, "\tInvalid input, please try again!", 1, highest);
-                int result;
-                numberMap.TryGetValue(option, out result);
+
                 if (option == highest)
                 {
-                    result = highest;
-                    
+                    confirmed = true;
                 }
-                if (result != highest)
+                else
                 {
+                    int result;
+                    numberMap.TryGetValue(option, out result);
                     territory = BoardPopulator.FindTerritory(result);
                     if (territory != null && territory.Occupant != player.Name)
                     {
@@ -273,10 +269,7 @@ namespace Risk
                         Console.ReadKey();
                     }
                 }
-                else
-                {
-                    confirmed = true;
-                }
+               
             }
             return territory;
         }

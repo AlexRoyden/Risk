@@ -4,7 +4,7 @@ namespace Risk
 {
     class PlayerTurn
     {
-        public static void GamePlay()
+        public void GamePlay()
         {
             var board = GameBoard.GetBoard();
             var playerList = board.GetPlayerList();
@@ -47,13 +47,13 @@ namespace Risk
             }
         }
 
-        private static void ReinforcementsPhase(GameBoard board)
+        private void ReinforcementsPhase(GameBoard board)
         {
-            board.CurrentPlayer.Armies = ArmyBuilder.ReinforcmentsCalculator();
+            board.CurrentPlayer.Armies = ArmyBuilder.ReinforcmentsCalculator(board.GetEarth(), board.CurrentPlayer);
             TroopDeployer.DeployTroops(board.CurrentPlayer);
         }
 
-        private static void BattlePhase()
+        private void BattlePhase()
         {
             var player = GameBoard.GetBoard().CurrentPlayer;
             player.GameEntryPoint = 2;
@@ -61,7 +61,7 @@ namespace Risk
             BattleBuilder.BattleMenu();
         }
 
-        private static void TroopMovementPhase()
+        private void TroopMovementPhase()
         {
             var player = GameBoard.GetBoard().CurrentPlayer;
             player.GameEntryPoint = 3;

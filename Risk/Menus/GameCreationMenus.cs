@@ -23,8 +23,8 @@ namespace Risk.Menus
                     break;
                 case 2:
                     Game builder = new LoadedGame();
-                    var game = new Risk();
-                    game.Construct(builder);
+                    var risk = new Risk();
+                    risk.Construct(builder);
                     break;
                 case 3:
                     Console.WriteLine("\tThank you and goodbye!\n\tPress any key to exit.......");

@@ -63,9 +63,6 @@ namespace Risk
             }
         }
 
-        /// <summary>
-        /// retruns List<Card> containing ALL players cards
-        /// </summary>
         public List<Card> GetPlayerCards()
         {
             var playerCards = new List<Card>();

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using Risk;
 
 namespace Tests
@@ -59,6 +61,19 @@ namespace Tests
         {
             var list = GetPlayerList();
             return new Queue<Player>(list);
+        }
+
+        public static Earth GetEarth()
+        {
+            var path = @"..\..\ConfigFiles\WorldMapConfig.json";
+            Earth earth;
+
+            using (var stream = new StreamReader(path))
+            {
+                var json = stream.ReadToEnd();
+                earth = JsonConvert.DeserializeObject<Earth>(json);
+            }
+            return earth;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Risk
 {
-    public class QuickGame : Game
+    sealed class QuickGame : Game
     {
         public override void CreateGame()
         {
@@ -10,7 +10,8 @@ namespace Risk
             AssignStartingPlayer();
             Populate();
             BoardBuilder.LoadTerritoryNeighbours();
-            PlayerTurn.GamePlay();
+            var play = new PlayerTurn();
+            play.GamePlay();
         }
 
         public override void InitializeBoard()

@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Risk;
 using Assert = NUnit.Framework.Assert;
 
-
 namespace Tests
 {
     [TestClass]
@@ -14,7 +13,6 @@ namespace Tests
         [TestMethod]
         public void TestAllTerritoriesLoad()
         {
-            //var path = GameEngine.PathBuilder();
             var territories = BoardBuilder.LoadNewTerritories();
 
             Assert.AreEqual(42,territories.Territories.Count);

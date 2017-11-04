@@ -95,9 +95,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ITerritory.cs" />
+    <Compile Include="WorldConquered.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="ConfigFiles\App.config" />
     <None Include="ConfigFiles\CardDeckConfig.json" />
     <None Include="SaveFiles\Save2.json" />

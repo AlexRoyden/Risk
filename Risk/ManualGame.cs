@@ -2,7 +2,7 @@
 
 namespace Risk
 {
-    public class ManualGame :Game
+    sealed class ManualGame :Game
     {
         public override void CreateGame()
         {
@@ -10,7 +10,8 @@ namespace Risk
             AssignStartingPlayer();
             BoardPopulator.SelectTerritories();
             BoardPopulator.DeployArmies();
-            PlayerTurn.GamePlay();
+            var play = new PlayerTurn();
+            play.GamePlay();
         }
 
         public override void InitializeBoard()

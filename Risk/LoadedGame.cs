@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using Newtonsoft.Json;
 using Risk.Mappers;
 using Risk.Menus;
 
 namespace Risk
 {
-    class LoadedGame : Game
+    sealed class LoadedGame : Game
     {
         private GameStateMapper _mapper;
 
@@ -17,7 +16,8 @@ namespace Risk
             var path = PathFinder(slot);
             LoadGame(path);
             InitializeBoard();
-            PlayerTurn.GamePlay();
+            var play = new PlayerTurn();
+            play.GamePlay();
         }
 
         public override void InitializeBoard()

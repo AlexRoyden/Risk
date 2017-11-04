@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace Risk
 {
-    class ArmyBuilder
+    public class ArmyBuilder
     {
         private static int _territoryCount;
         private static int _continentCount;
+        public delegate void Del(int i);
 
-        public static int ReinforcmentsCalculator()
+        public static int ReinforcmentsCalculator(Earth earth, Player player)
         {
-            var territory = CountByTerritories();
-            var continent = CountByContinent();
-            var trades = TradeCards();
+            var territory = ArmiesForTerritoriesOccupied(earth, player);
+            var continent = ArmiesForContinentsOccupied(earth, player);
+            var trades = TradeCards(player);
             var armies = territory + continent + trades;
-            var player = GameBoard.GetBoard().CurrentPlayer;
 
             Console.Clear();
             Colour.SouthAmericaRed("\t\t  **** Risk! ****\n");
@@ -31,14 +31,13 @@ namespace Risk
             return armies;
         }
 
-        private static int CountByTerritories()
+        public static int ArmiesForTerritoriesOccupied(Earth earth, Player player)
         {
-            var board = GameBoard.GetBoard();
             var count = 0;
             int result;
-            foreach (var territory in board.GetEarth().Territories)
+            foreach (var territory in earth.Territories)
             {
-                if (territory.Occupant == board.CurrentPlayer.Name)
+                if (territory.Occupant == player.Name)
                 {
                     count += 1;
                 }
@@ -56,10 +55,8 @@ namespace Risk
             return result;
         }
 
-        private static int CountByContinent()
+        public static int ArmiesForContinentsOccupied(Earth earth, Player player)
         {
-            var board = GameBoard.GetBoard();
-            var player = board.CurrentPlayer.Name;
             var asia = new List<string>();
             var europe = new List<string>();
             var northAmerica = new List<string>();
@@ -68,7 +65,7 @@ namespace Risk
             var australasia = new List<string>();
             int result = 0;
 
-            foreach (var territory in board.GetEarth().Territories)
+            foreach (var territory in earth.Territories)
             {
                 switch (territory.Continent)
                 {
@@ -96,17 +93,18 @@ namespace Risk
                 }
             }
 
-            if (CheckContinentForRuler(asia, player)) { result += 7;}
-            if (CheckContinentForRuler(europe, player)) { result += 5;}
-            if (CheckContinentForRuler(northAmerica, player)) { result += 5;}
-            if (CheckContinentForRuler(africa, player)) { result += 3;}
-            if (CheckContinentForRuler(southAmerica, player)) { result += 2;}
-            if (CheckContinentForRuler(australasia, player)) { result += 2;}
+            Del myLambda = x => result += x;
+            if (CheckContinentForRuler(asia, player.Name)) { myLambda(7);}
+            if (CheckContinentForRuler(europe, player.Name)) { myLambda(5);}
+            if (CheckContinentForRuler(northAmerica, player.Name)) { myLambda(5);}
+            if (CheckContinentForRuler(africa, player.Name)) { myLambda(3);}
+            if (CheckContinentForRuler(southAmerica, player.Name)) { myLambda(2);}
+            if (CheckContinentForRuler(australasia, player.Name)) { myLambda(2);}
 
             return result;
         }
 
-        private static bool CheckContinentForRuler(List<string> continent, string player)
+        public static bool CheckContinentForRuler(List<string> continent, string player)
         {
             var playerOccupied = 0;
 
@@ -126,10 +124,8 @@ namespace Risk
             return false;
         }
 
-        private static int TradeCards()
+        public static int TradeCards(Player player)
         {
-            var player = GameBoard.GetBoard().CurrentPlayer;
-            
             var result = 0;
             if (player.Cards != null && player.Cards.Count >= 3 )
             {

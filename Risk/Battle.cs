@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Risk
 {
     class Battle
     {
-        public static void BeginBattle(Attack attack)
+        public delegate void TerritoryConqueredHandler(Attack attack);
+
+        public event EventHandler GameCompleted;
+
+        public void BeginBattle(Attack attack)
         {
+            var dell = new TerritoryConqueredHandler(TerritoryConquered);
             BattleOutcome singleDie = new DiceSingleBattle();
             BattleOutcome doubleDie = new DiceDoubleBattle();
             BattleOutcome trippleDie = new DiceTrippleBattle();
@@ -19,13 +25,13 @@ namespace Risk
 
             if (attack.DefendingTerritory.Armies == 0)
             {
-
-                TerritoryConquered(attack);
+                dell(attack);
             }
         }
 
-        private static void TerritoryConquered(Attack attack)
+        private void TerritoryConquered(Attack attack)
         {
+
             Console.Clear();
             Colour.SouthAmericaRed("\t     **** Risk! ****\n");
             Console.WriteLine("\t==========================");
@@ -33,12 +39,22 @@ namespace Risk
             Colour.PrintPlayer(attack.Attacker.Colour, "\t" + attack.Attacker.Name);
             Console.Write(", you have defeated all of the armies in ");
             Colour.PrintLand(attack.DefendingTerritory.Continent, attack.DefendingTerritory.Name);
+
+            attack.DefendingTerritory.Occupant = attack.Attacker.Name;
+            var landCount = CountPlayersTerritories(attack.Attacker);
+
+            if (landCount == 42)
+            {
+                OnGameCompleted();
+            }
+
+
             if (attack.AttackingTerritory.Armies == 2)
             {
                 Console.WriteLine("\n\tOne army has been moved to {0}.", attack.Defender.Name);
                 attack.AttackingTerritory.Armies -= 1;
                 attack.DefendingTerritory.Armies += 1;
-                attack.DefendingTerritory.Occupant = attack.Attacker.Name;
+                
             }
             else
             {
@@ -49,7 +65,6 @@ namespace Risk
                 var option = GameEngine.UserInputTest(prompt, "\tInvalid input, please try again!", 1, armies);
                 attack.AttackingTerritory.Armies -= option;
                 attack.DefendingTerritory.Armies += option;
-                attack.DefendingTerritory.Occupant = attack.Attacker.Name;
             }
             GameBoard.GetBoard().CurrentPlayer.ConqueredDuringTurn += 1;
             Console.WriteLine("\tPress any key to continue....");
@@ -58,18 +73,25 @@ namespace Risk
             CheckUserHasTerritories(attack.Defender, attack.Attacker);
         }
 
-        private static void CheckUserHasTerritories(Player loser, Player winner)
+        private static int CountPlayersTerritories(Player player)
         {
-            var board = GameBoard.GetBoard();
+            var earth = GameBoard.GetBoard().GetEarth();
             var count = 0;
 
-            foreach (var territory in board.GetEarth().Territories)
+            foreach (var territory in earth.Territories)
             {
-                if (territory.Occupant == loser.Name)
+                if (territory.Occupant == player.Name)
                 {
                     count++;
                 }
             }
+            return count;
+        }
+
+        private static void CheckUserHasTerritories(Player loser, Player winner)
+        {
+            var board = GameBoard.GetBoard();
+            var count = CountPlayersTerritories(loser);
 
             if (count == 0)
             {
@@ -77,17 +99,22 @@ namespace Risk
                 Colour.SouthAmericaRed("\t     **** Risk! ****\n");
                 Console.WriteLine("\t==========================\n");
                 Colour.PrintPlayer(loser.Colour, "\t" + loser.Name);
-                Console.WriteLine(", You have no remaining territories.");
-                Console.WriteLine("You have been annihilated, ");
+                Console.Write(", You have no remaining territories.");
+                Console.Write("\n\tYou have been annihilated, ");
                 Colour.SouthAmericaRed("your game is over!!!!");
-                Console.WriteLine("\tPress any key to continue....");
+                Console.Write("\n\tPress any key to continue....");
                 Console.ReadKey();
 
-                if (loser.Cards.Count > 0)
+                if (loser.Cards != null && loser.Cards.Count > 0)
                 {
                     foreach (var card in loser.Cards)
                     {
-                        winner.Cards.Add(card);
+                        if (winner.Cards == null)
+                        {
+                            winner.Cards = new List<Card>();
+                            winner.Cards.Add(card);
+                        }
+                        else { winner.Cards.Add(card); }
                     }
 
                     Console.Clear();
@@ -100,7 +127,8 @@ namespace Risk
 
                     if (winner.Cards.Count > 6)
                     {
-                        Console.WriteLine("\tYou now have more than 6 game cards.");
+                        board.CurrentPlayer = winner;
+                        Console.Write("\n\tYou now have more than 6 game cards.");
                         Console.WriteLine("\tYou must trade cards now.");
                         Console.WriteLine("\tPress any key to continue....");
                         Console.ReadKey();
@@ -200,6 +228,14 @@ namespace Risk
             else if (defendDice == 2)
             {
                 attack.DefendDice2 = 0;
+            }
+        }
+
+        private void OnGameCompleted()
+        {
+            if (GameCompleted != null)
+            {
+                GameCompleted(this, EventArgs.Empty);
             }
         }
     }

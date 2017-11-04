@@ -1,6 +1,6 @@
 ﻿namespace Risk
 {
-    class Attack
+    public class Attack
     {
         public int AttackDiceCount { get; set; }
         public int DefendDiceCount { get; set; }
