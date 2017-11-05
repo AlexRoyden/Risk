@@ -28,7 +28,7 @@ namespace Risk
             return attack;
         }
 
-        private static void BattleRollOptions(Attack attack)
+        public static void BattleRollOptions(Attack attack)
         {
             var dice = Dicer.GetDice();
             if (attack.AttackDiceCount == 1)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Risk
 {
-    class BoardPopulator
+    public class BoardPopulator
     {
         public static void SelectTerritories()
         {
@@ -181,7 +181,7 @@ namespace Risk
             return occupied;
         }
 
-        private static bool CheckMapIsFull(GameBoard board)
+        public static bool CheckMapIsFull(GameBoard board)
         {
             var count = 0;
 

@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="ArmyBuilderTests.cs" />
     <Compile Include="BattleBuilderTests.cs" />
+    <Compile Include="BoardPopulatorTests.cs" />
     <Compile Include="DiceTests.cs" />
     <Compile Include="BoardBuilderTests.cs" />
     <Compile Include="GameEngineTests.cs" />

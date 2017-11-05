@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Risk.Menus;
 
 namespace Risk
 {
@@ -74,7 +73,6 @@ namespace Risk
 
         private void TerritoryConquered(Attack attack)
         {
-
             Console.Clear();
             Colour.SouthAmericaRed("\t     **** Risk! ****\n");
             Console.WriteLine("\t==========================");
@@ -91,13 +89,11 @@ namespace Risk
                 OnGameCompleted();
             }
 
-
             if (attack.AttackingTerritory.Armies == 2)
             {
                 Console.WriteLine("\n\tOne army has been moved to {0}.", attack.Defender.Name);
                 attack.AttackingTerritory.Armies -= 1;
                 attack.DefendingTerritory.Armies += 1;
-                
             }
             else
             {

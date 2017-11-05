@@ -14,7 +14,7 @@ namespace Risk
         {
             _dice = new List<Dice>();
             _randoms = new List<Random>();
-            GenerateRandoms(rnd);
+            GenerateRandoms();
         }
 
         public int RandomRoll()
@@ -36,7 +36,7 @@ namespace Risk
             return _dicer;
         }
 
-        private void GenerateRandoms(Random rnd)
+        private void GenerateRandoms()
         {
             var random1 = new Random();
             var dice1 = new Dice(random1);
