@@ -1,54 +1,10 @@
 ﻿using System;
-using Risk.Menus;
 
 namespace Risk
 {
     public class BattleBuilder
     {
-        public static void BattleMenu()
-        {
-            var complete = false;
-            while (complete == false)
-            {
-                var player = GameBoard.GetBoard().CurrentPlayer;
-                Console.Clear();
-                Colour.SouthAmericaRed("\t     **** Risk! ****\n");
-                Console.WriteLine("\t==========================");
-                Console.WriteLine("\t       Battle Menu");
-                Console.Write("\tCurrently ");
-                Colour.PrintPlayer(player.Colour, player.Name + "'s");
-                Console.Write(" turn.\n");
-                Console.WriteLine("\t1. Select territory to attack");
-                Console.WriteLine("\t2. Game Menu");
-                Console.WriteLine("\t3. Finish Fighting");
-                Console.WriteLine("\t==========================");
-                var option = GameEngine.UserInputTest("\t(1-3)>", "\tInvalid input, please try again!", 1, 3);
-
-                switch (option)
-                {
-                    case 1:
-                        var attack = BuildBattle();
-                        if (attack.AttackingTerritory != null)
-                        {
-                            var battle = new Battle();
-                            var unused = new WorldConquered(battle);
-                            battle.BeginBattle(attack);
-                        }
-                        break;
-                    case 2:
-                        GamePlayMenus.PlayerTurnMenu();
-                        break;
-                    case 3:
-                        complete = true;
-                        break;
-                    default:
-                        Console.WriteLine("Error");
-                        break;
-                }
-            }
-        }
-
-        private static Attack BuildBattle()
+        protected static Attack BuildBattle()
         {
             var board = GameBoard.GetBoard();
             var attack = new Attack();
@@ -74,31 +30,31 @@ namespace Risk
 
         private static void BattleRollOptions(Attack attack)
         {
-            var rnd = GameBoard.GetBoard().GetRandom();
+            var dice = Dicer.GetDice();
             if (attack.AttackDiceCount == 1)
             {
-                attack.AttackDice1 = Dice.Roll(rnd);
+                attack.AttackDice1 = dice.RandomRoll();
             }
             else if (attack.AttackDiceCount == 2)
             {
-                attack.AttackDice1 = Dice.Roll(rnd);
-                attack.AttackDice2 = Dice.Roll(rnd);
+                attack.AttackDice1 = dice.RandomRoll();
+                attack.AttackDice2 = dice.RandomRoll();
             }
             else if (attack.AttackDiceCount == 3)
             {
-                attack.AttackDice1 = Dice.Roll(rnd);
-                attack.AttackDice2 = Dice.Roll(rnd);
-                attack.AttackDice3 = Dice.Roll(rnd);
+                attack.AttackDice1 = dice.RandomRoll();
+                attack.AttackDice2 = dice.RandomRoll();
+                attack.AttackDice3 = dice.RandomRoll();
             }
 
             if (attack.DefendDiceCount == 1)
             {
-                attack.DefendDice1 = Dice.Roll(rnd);
+                attack.DefendDice1 = dice.RandomRoll();
             }
             else if (attack.DefendDiceCount == 2)
             {
-                attack.DefendDice1 = Dice.Roll(rnd);
-                attack.DefendDice2 = Dice.Roll(rnd);
+                attack.DefendDice1 = dice.RandomRoll();
+                attack.DefendDice2 = dice.RandomRoll();
             }
         }
 

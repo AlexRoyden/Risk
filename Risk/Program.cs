@@ -20,6 +20,7 @@ namespace Risk
         {
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
+            Dicer.GetDice();
             GameCreationMenus.StartMenu();
         }
     }

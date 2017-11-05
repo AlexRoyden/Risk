@@ -12,7 +12,8 @@ namespace Tests
         public void TestRollIsInRange()
         {
             var rnd = new Random();
-            var number = Dice.Roll(rnd);
+            var die = new Dice(rnd);
+            var number = die.Roll(rnd);
 
             Assert.IsTrue(number >= 1 && number <= 6);
         }

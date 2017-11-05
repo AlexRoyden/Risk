@@ -1,13 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using Risk.Menus;
 
 namespace Risk
 {
-    class Battle
+    class Battle : BattleBuilder
     {
         public delegate void TerritoryConqueredHandler(Attack attack);
 
         public event EventHandler GameCompleted;
+
+        public void BattleMenu()
+        {
+            var complete = false;
+            while (complete == false)
+            {
+                var player = GameBoard.GetBoard().CurrentPlayer;
+                Console.Clear();
+                Colour.SouthAmericaRed("\t     **** Risk! ****\n");
+                Console.WriteLine("\t==========================");
+                Console.WriteLine("\t       Battle Menu");
+                Console.Write("\tCurrently ");
+                Colour.PrintPlayer(player.Colour, player.Name + "'s");
+                Console.Write(" turn.\n");
+                Console.WriteLine("\t1. Select territory to attack");
+                Console.WriteLine("\t2. Game Menu");
+                Console.WriteLine("\t3. Finish Fighting");
+                Console.WriteLine("\t==========================");
+                var option = GameEngine.UserInputTest("\t(1-3)>", "\tInvalid input, please try again!", 1, 3);
+
+                switch (option)
+                {
+                    case 1:
+                        var attack = BuildBattle();
+                        if (attack.AttackingTerritory != null)
+                        {
+                            var unused = new WorldConquered(this);
+                            BeginBattle(attack);
+                        }
+                        break;
+                    case 2:
+                        GamePlayMenus.PlayerTurnMenu();
+                        break;
+                    case 3:
+                        complete = true;
+                        break;
+                    default:
+                        Console.WriteLine("Error");
+                        break;
+                }
+            }
+        }
 
         public void BeginBattle(Attack attack)
         {

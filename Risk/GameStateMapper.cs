@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Risk.Mappers
+namespace Risk
 {
     class GameStateMapper
     {

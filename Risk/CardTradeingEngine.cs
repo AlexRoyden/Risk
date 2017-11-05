@@ -91,7 +91,14 @@ namespace Risk
                         GamePlayMenus.PlayerTurnMenu();
                         break;
                     case 5:
-                        doneTrading = true;
+                        if (player.Cards.Count <= 6)
+                        {
+                            doneTrading = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\tYou have more than 6 cards, You must trade some!");
+                        }
                         break;
                     default:
                         Console.WriteLine("\tError");

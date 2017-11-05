@@ -1,6 +1,4 @@
-﻿using Risk.Mappers;
-
-namespace Risk
+﻿namespace Risk
 {
     class StateBuilder
     {

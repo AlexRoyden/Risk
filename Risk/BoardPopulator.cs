@@ -153,7 +153,6 @@ namespace Risk
                     allDeployed = true;
                 }
             }
-
         }
 
         private static bool CheckIfOccupied(Territory territory, Player player)
@@ -179,7 +178,6 @@ namespace Risk
                 territory.Armies = 1;
                 player.Armies -= 1;
             }
-            
             return occupied;
         }
 

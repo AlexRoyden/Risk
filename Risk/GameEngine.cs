@@ -7,18 +7,16 @@ namespace Risk
     {
         public static Player HighestRoll(List<Player> rollers)
         {
-            var board = GameBoard.GetBoard();
             int highest = 0;
             int winnerCount = 0;
             Player winner = null;
             var success = false;
-            var rnd = board.GetRandom();
 
             while (success == false)
             {
                 foreach (var player in rollers)
                 {
-                    var roll = Dice.Roll(rnd);
+                    var roll = Dicer.GetDice().RandomRoll();
                     if (roll > highest)
                     {
                         highest = roll;

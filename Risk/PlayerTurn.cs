@@ -58,7 +58,8 @@ namespace Risk
             var player = GameBoard.GetBoard().CurrentPlayer;
             player.GameEntryPoint = 2;
             GameEngine.Timer("Battle phase about to begin");
-            BattleBuilder.BattleMenu();
+            var battle = new Battle();
+            battle.BattleMenu();
         }
 
         private void TroopMovementPhase()

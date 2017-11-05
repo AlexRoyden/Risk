@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Risk.ArmyBuilder">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Risk.ArmyBuilder.Del" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ArmyBuilder.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CAAAAABAAAAACACAgAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>ArmyBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Attack">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAMADAAAAAAAAIAABAAgAAAAAABAAAAQAAAAQAA=</HashCode>
+      <FileName>Attack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Battle">
+    <Position X="23" Y="3" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Risk.Battle.TerritoryConqueredHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Battle.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAEEAACAAEAgAAAAAAAAAAQAEAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Battle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.BattleBuilder">
+    <Position X="23" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKAAEAAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>BattleBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.BattleOutcome">
+    <Position X="3" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAEAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>BattleOutcome.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.BoardBuilder">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAIAAAACA=</HashCode>
+      <FileName>BoardBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.BoardPopulator">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAIAAAAAAAAIAAAAIAAAAAAAAAIAAAAAAACAAAI=</HashCode>
+      <FileName>BoardPopulator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Card">
+    <Position X="9.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Card.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.CardDeck">
+    <Position X="9.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CardDeck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.CardTradeingEngine">
+    <Position X="9.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAEAAQAAAAAABABAAAgAAAAAAAAAAAAAg=</HashCode>
+      <FileName>CardTradeingEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Colour">
+    <Position X="7.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAQAAgAAAAAAAAAAAAAAAAgAAAACAAAAEAAAAAA=</HashCode>
+      <FileName>Colour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Dice">
+    <Position X="20.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Dice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.DiceDoubleBattle">
+    <Position X="5.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DiceDoubleBattle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Dicer">
+    <Position X="20.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgABAAAAAAAAAACAACAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Dicer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.DiceSingleBattle">
+    <Position X="0.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DiceSingleBattle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.DiceTrippleBattle">
+    <Position X="3" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DiceTrippleBattle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Earth">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Earth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Game">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABgAAEAACAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.GameBoard">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAgABQUQgCJAAEAAGAAAIABAAbgAAFCAACACggAAAAE=</HashCode>
+      <FileName>GameBoard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.GameCreationMenus">
+    <Position X="16.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>GameCreationMenus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.GameEngine">
+    <Position X="7.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAABAAQAAAAAAAAAAAAAIBAEAgA=</HashCode>
+      <FileName>GameEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.GameSaver">
+    <Position X="18.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameSaver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.GameStateMapper">
+    <Position X="18.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAABCAAAAAAAAAAIAAAAAAAIAAAgAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>GameStateMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.LoadedGame">
+    <Position X="0.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAgAAEAADAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>LoadedGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.ManualGame">
+    <Position X="3" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAEAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ManualGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.MapBuilder">
+    <Position X="11.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>MapBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Player">
+    <Position X="14.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAQAAAAAAAAAAAAAQIAAAAAAAAAAAAABAAIAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.PlayersBuilder">
+    <Position X="16.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAEAAAgAAAAAAAAAAEAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>PlayersBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.PlayersCards">
+    <Position X="13" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAKABAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>PlayersCards.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.PlayerTurn">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAACAAAAAAAAgAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>PlayerTurn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Program">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAABQBgAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.QuickGame">
+    <Position X="5.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAgAAEAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>QuickGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Risk">
+    <Position X="11.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Risk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.SaveGameMetaData">
+    <Position X="18.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMAAAAAAAAAAAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAg=</HashCode>
+      <FileName>SaveGameMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.SaveMetaMapper">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACQAAAAAAABgRAACAAAAAAggEBCAAA=</HashCode>
+      <FileName>SaveMetaMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.StateBuilder">
+    <Position X="18.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StateBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.TeritoriesFortification">
+    <Position X="11.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAIAAAIAAIA=</HashCode>
+      <FileName>TeritoriesFortification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Territory" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAACAAAAAAAgAQAAAAAAgABAAAACAAAAAA=</HashCode>
+      <FileName>Territory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Risk.TroopDeployer">
+    <Position X="13" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TroopDeployer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.WorldConquered">
+    <Position X="14.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAEAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorldConquered.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Risk.Menus.GamePlayMenus">
+    <Position X="13" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GamePlayMenus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Risk.ITerritory">
+    <Position X="11.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAACAAAAAAAAAQAAAAAAgABAAAACAAAAAA=</HashCode>
+      <FileName>ITerritory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
